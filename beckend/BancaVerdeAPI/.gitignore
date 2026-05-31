@@ -1,0 +1,30 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Arquivos de usuário
+*.user
+*.suo
+
+# Banco LocalDB
+*.mdf
+*.ldf
+
+# Configurações locais
+appsettings.Development.json
+
+# Node.js (frontend)
+node_modules/
+
+# Sistema
+Thumbs.db
+.DS_Store
