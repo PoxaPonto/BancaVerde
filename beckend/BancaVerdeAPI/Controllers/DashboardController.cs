@@ -1,0 +1,32 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using BancaVerdeAPI.Data;
+
+namespace BancaVerdeAPI.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class DashboardController : ControllerBase
+{
+    private readonly AppDbContext _context;
+
+    public DashboardController(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetDashboard()
+    {
+        var totalProducts = await _context.Products.CountAsync();
+        var totalCategories = await _context.Categories.CountAsync();
+        var totalStock = await _context.Products.SumAsync(p => p.Stock);
+
+        return Ok(new
+        {
+            TotalProducts = totalProducts,
+            TotalCategories = totalCategories,
+            TotalStock = totalStock
+        });
+    }
+}

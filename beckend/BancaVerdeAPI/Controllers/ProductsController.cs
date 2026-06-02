@@ -53,6 +53,18 @@ public class ProductsController : ControllerBase
         return Ok(products);
     }
 
+    // GET: api/Products/category/1
+    [HttpGet("category/{categoryId}")]
+    public async Task<IActionResult> GetProductsByCategory(int categoryId)
+    {
+        var products = await _context.Products
+            .Include(p => p.Category)
+            .Where(p => p.CategoryId == categoryId)
+            .ToListAsync();
+
+        return Ok(products);
+    }
+
     // POST: api/Products
     [HttpPost]
     public async Task<IActionResult> CreateProduct(Product product)
@@ -61,7 +73,11 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok(product);
+        return CreatedAtAction(
+            nameof(GetProduct),
+            new { id = product.Id },
+            product
+        );
     }
 
     // PUT: api/Products/1
@@ -96,6 +112,6 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok("Produto removido com sucesso.");
+        return NoContent();
     }
 }
