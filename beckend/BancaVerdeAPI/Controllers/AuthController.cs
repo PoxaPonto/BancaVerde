@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
+using BancaVerdeAPI.DTOs;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -26,15 +27,20 @@ public class AuthController : ControllerBase
 
     // POST: api/Auth/register
     [HttpPost("register")]
-    public async Task<IActionResult> Register(User user)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
         var emailExists = await _context.Users
-            .AnyAsync(u => u.Email == user.Email);
+            .AnyAsync(u => u.Email == request.Email);
 
         if (emailExists)
             return BadRequest("Este e-mail já está cadastrado.");
 
-        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        var user = new User
+        {
+            Name = request.Name,
+            Email = request.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(request.Password)
+        };
 
         _context.Users.Add(user);
 
