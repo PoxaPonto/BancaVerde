@@ -14,10 +14,14 @@ namespace BancaVerdeAPI.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(AppDbContext context)
+    public AuthController(
+        AppDbContext context,
+        IConfiguration configuration)
     {
         _context = context;
+        _configuration = configuration;
     }
 
     // POST: api/Auth/register
@@ -60,7 +64,7 @@ public class AuthController : ControllerBase
         var tokenHandler = new JwtSecurityTokenHandler();
 
         var key = Encoding.UTF8.GetBytes(
-            "MinhaChaveSuperSecretaBancaVerde2026"
+            _configuration["Jwt:Key"]!
         );
 
         var tokenDescriptor = new SecurityTokenDescriptor

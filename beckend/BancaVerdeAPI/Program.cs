@@ -16,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var key = Encoding.UTF8.GetBytes(
-    "MinhaChaveSuperSecretaBancaVerde2026"
+    builder.Configuration["Jwt:Key"]!
 );
 
 builder.Services.AddAuthentication(options =>
