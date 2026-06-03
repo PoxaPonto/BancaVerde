@@ -22,11 +22,15 @@ public class DashboardController : ControllerBase
         var totalCategories = await _context.Categories.CountAsync();
         var totalStock = await _context.Products.SumAsync(p => p.Stock);
 
+        var totalInventoryValue = await _context.Products
+            .SumAsync(p => p.Price * p.Stock);
+
         return Ok(new
         {
             TotalProducts = totalProducts,
             TotalCategories = totalCategories,
-            TotalStock = totalStock
+            TotalStock = totalStock,
+            TotalInventoryValue = totalInventoryValue
         });
     }
 }

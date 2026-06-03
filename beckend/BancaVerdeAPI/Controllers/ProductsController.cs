@@ -69,6 +69,12 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateProduct(Product product)
     {
+        var categoryExists = await _context.Categories
+            .AnyAsync(c => c.Id == product.CategoryId);
+
+        if (!categoryExists)
+            return BadRequest("Categoria não encontrada.");
+
         _context.Products.Add(product);
 
         await _context.SaveChangesAsync();
@@ -88,6 +94,12 @@ public class ProductsController : ControllerBase
 
         if (product == null)
             return NotFound("Produto não encontrado.");
+
+        var categoryExists = await _context.Categories
+            .AnyAsync(c => c.Id == updatedProduct.CategoryId);
+
+        if (!categoryExists)
+            return BadRequest("Categoria não encontrada.");
 
         product.Name = updatedProduct.Name;
         product.Price = updatedProduct.Price;
