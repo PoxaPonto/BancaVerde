@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
+using BancaVerdeAPI.DTOs;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -18,24 +19,39 @@ public class ProductsController : ControllerBase
         _context = context;
     }
 
-    // GET: api/Products
     [HttpGet]
     public async Task<IActionResult> GetProducts()
     {
         var products = await _context.Products
             .Include(p => p.Category)
+            .Select(p => new ProductResponseDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Stock = p.Stock,
+                CategoryName = p.Category != null ? p.Category.Name : ""
+            })
             .ToListAsync();
 
         return Ok(products);
     }
 
-    // GET: api/Products/1
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProduct(int id)
     {
         var product = await _context.Products
             .Include(p => p.Category)
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .Where(p => p.Id == id)
+            .Select(p => new ProductResponseDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Stock = p.Stock,
+                CategoryName = p.Category != null ? p.Category.Name : ""
+            })
+            .FirstOrDefaultAsync();
 
         if (product == null)
             return NotFound("Produto não encontrado.");
@@ -43,39 +59,60 @@ public class ProductsController : ControllerBase
         return Ok(product);
     }
 
-    // GET: api/Products/search/banana
     [HttpGet("search/{name}")]
     public async Task<IActionResult> SearchProducts(string name)
     {
         var products = await _context.Products
             .Include(p => p.Category)
             .Where(p => p.Name.Contains(name))
+            .Select(p => new ProductResponseDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Stock = p.Stock,
+                CategoryName = p.Category != null ? p.Category.Name : ""
+            })
             .ToListAsync();
 
         return Ok(products);
     }
 
-    // GET: api/Products/category/1
     [HttpGet("category/{categoryId}")]
     public async Task<IActionResult> GetProductsByCategory(int categoryId)
     {
         var products = await _context.Products
             .Include(p => p.Category)
             .Where(p => p.CategoryId == categoryId)
+            .Select(p => new ProductResponseDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Stock = p.Stock,
+                CategoryName = p.Category != null ? p.Category.Name : ""
+            })
             .ToListAsync();
 
         return Ok(products);
     }
 
-    // POST: api/Products
     [HttpPost]
-    public async Task<IActionResult> CreateProduct(Product product)
+    public async Task<IActionResult> CreateProduct(CreateProductDto productDto)
     {
         var categoryExists = await _context.Categories
-            .AnyAsync(c => c.Id == product.CategoryId);
+            .AnyAsync(c => c.Id == productDto.CategoryId);
 
         if (!categoryExists)
             return BadRequest("Categoria não encontrada.");
+
+        var product = new Product
+        {
+            Name = productDto.Name,
+            Price = productDto.Price,
+            Stock = productDto.Stock,
+            CategoryId = productDto.CategoryId
+        };
 
         _context.Products.Add(product);
 
@@ -88,9 +125,8 @@ public class ProductsController : ControllerBase
         );
     }
 
-    // PUT: api/Products/1
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
+    public async Task<IActionResult> UpdateProduct(int id, UpdateProductDto updatedProduct)
     {
         var product = await _context.Products.FindAsync(id);
 
@@ -110,10 +146,9 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok(product);
+        return NoContent();
     }
 
-    // DELETE: api/Products/1
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
