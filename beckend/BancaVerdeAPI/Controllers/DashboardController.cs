@@ -21,18 +21,56 @@ public class DashboardController : ControllerBase
     public async Task<IActionResult> GetDashboard()
     {
         var totalProducts = await _context.Products.CountAsync();
+
         var totalCategories = await _context.Categories.CountAsync();
+
         var totalStock = await _context.Products.SumAsync(p => p.Stock);
 
         var totalInventoryValue = await _context.Products
             .SumAsync(p => p.Price * p.Stock);
+
+        var mostExpensiveProduct = await _context.Products
+            .OrderByDescending(p => p.Price)
+            .Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.Price
+            })
+            .FirstOrDefaultAsync();
+
+        var cheapestProduct = await _context.Products
+            .OrderBy(p => p.Price)
+            .Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.Price
+            })
+            .FirstOrDefaultAsync();
+
+        var categoryWithMostProducts = await _context.Categories
+            .Select(c => new
+            {
+                c.Id,
+                c.Name,
+                ProductCount = c.Products.Count
+            })
+            .OrderByDescending(c => c.ProductCount)
+            .FirstOrDefaultAsync();
 
         return Ok(new
         {
             TotalProducts = totalProducts,
             TotalCategories = totalCategories,
             TotalStock = totalStock,
-            TotalInventoryValue = totalInventoryValue
+            TotalInventoryValue = totalInventoryValue,
+
+            MostExpensiveProduct = mostExpensiveProduct,
+
+            CheapestProduct = cheapestProduct,
+
+            CategoryWithMostProducts = categoryWithMostProducts
         });
     }
 }
