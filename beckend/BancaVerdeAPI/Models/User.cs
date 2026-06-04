@@ -17,4 +17,7 @@ public class User
     [Required]
     [StringLength(100)]
     public string Password { get; set; } = string.Empty;
+
+    [Required]
+    public string Role { get; set; } = "User";
 }

@@ -25,7 +25,6 @@ public class AuthController : ControllerBase
         _configuration = configuration;
     }
 
-    // POST: api/Auth/register
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
@@ -39,7 +38,8 @@ public class AuthController : ControllerBase
         {
             Name = request.Name,
             Email = request.Email,
-            Password = BCrypt.Net.BCrypt.HashPassword(request.Password)
+            Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            Role = "User"
         };
 
         _context.Users.Add(user);
@@ -49,7 +49,6 @@ public class AuthController : ControllerBase
         return Ok("Usuário cadastrado com sucesso.");
     }
 
-    // POST: api/Auth/login
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest loginData)
     {
@@ -79,7 +78,8 @@ public class AuthController : ControllerBase
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             }),
 
             Expires = DateTime.UtcNow.AddHours(2),
@@ -98,7 +98,8 @@ public class AuthController : ControllerBase
             Token = tokenHandler.WriteToken(token),
             UserId = user.Id,
             Name = user.Name,
-            Email = user.Email
+            Email = user.Email,
+            Role = user.Role
         });
     }
 }

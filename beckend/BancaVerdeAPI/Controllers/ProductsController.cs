@@ -97,6 +97,7 @@ public class ProductsController : ControllerBase
         return Ok(products);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> CreateProduct(CreateProductDto productDto)
     {
@@ -125,6 +126,7 @@ public class ProductsController : ControllerBase
         );
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateProduct(int id, UpdateProductDto updatedProduct)
     {
@@ -149,6 +151,7 @@ public class ProductsController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
