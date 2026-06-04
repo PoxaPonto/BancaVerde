@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
+using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -30,7 +31,11 @@ public class CategoriesController : ControllerBase
             })
             .ToListAsync();
 
-        return Ok(categories);
+        return Ok(new ApiResponse<List<CategoryResponseDto>>(
+            true,
+            "Categorias encontradas com sucesso.",
+            categories
+        ));
     }
 
     [HttpGet("{id}")]
@@ -46,9 +51,16 @@ public class CategoriesController : ControllerBase
             .FirstOrDefaultAsync();
 
         if (category == null)
-            return NotFound("Categoria não encontrada.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Categoria não encontrada."
+            ));
 
-        return Ok(category);
+        return Ok(new ApiResponse<CategoryResponseDto>(
+            true,
+            "Categoria encontrada com sucesso.",
+            category
+        ));
     }
 
     [Authorize(Roles = "Admin")]
@@ -64,14 +76,20 @@ public class CategoriesController : ControllerBase
 
         await _context.SaveChangesAsync();
 
+        var response = new CategoryResponseDto
+        {
+            Id = category.Id,
+            Name = category.Name
+        };
+
         return CreatedAtAction(
             nameof(GetCategory),
             new { id = category.Id },
-            new CategoryResponseDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            }
+            new ApiResponse<CategoryResponseDto>(
+                true,
+                "Categoria criada com sucesso.",
+                response
+            )
         );
     }
 
@@ -82,13 +100,19 @@ public class CategoriesController : ControllerBase
         var category = await _context.Categories.FindAsync(id);
 
         if (category == null)
-            return NotFound("Categoria não encontrada.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Categoria não encontrada."
+            ));
 
         category.Name = categoryDto.Name;
 
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(new ApiResponse<object>(
+            true,
+            "Categoria atualizada com sucesso."
+        ));
     }
 
     [Authorize(Roles = "Admin")]
@@ -98,12 +122,18 @@ public class CategoriesController : ControllerBase
         var category = await _context.Categories.FindAsync(id);
 
         if (category == null)
-            return NotFound("Categoria não encontrada.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Categoria não encontrada."
+            ));
 
         _context.Categories.Remove(category);
 
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(new ApiResponse<object>(
+            true,
+            "Categoria removida com sucesso."
+        ));
     }
 }
