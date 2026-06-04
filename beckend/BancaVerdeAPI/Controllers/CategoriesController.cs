@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
+using BancaVerdeAPI.DTOs;
 
 namespace BancaVerdeAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CategoriesController : ControllerBase
@@ -19,24 +22,43 @@ public class CategoriesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetCategories()
     {
-        var categories = await _context.Categories.ToListAsync();
+        var categories = await _context.Categories
+            .Select(c => new CategoryResponseDto
+            {
+                Id = c.Id,
+                Name = c.Name
+            })
+            .ToListAsync();
+
         return Ok(categories);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCategory(int id)
     {
-        var category = await _context.Categories.FindAsync(id);
+        var category = await _context.Categories
+            .Where(c => c.Id == id)
+            .Select(c => new CategoryResponseDto
+            {
+                Id = c.Id,
+                Name = c.Name
+            })
+            .FirstOrDefaultAsync();
 
         if (category == null)
-            return NotFound();
+            return NotFound("Categoria não encontrada.");
 
         return Ok(category);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCategory(Category category)
+    public async Task<IActionResult> CreateCategory(CreateCategoryDto categoryDto)
     {
+        var category = new Category
+        {
+            Name = categoryDto.Name
+        };
+
         _context.Categories.Add(category);
 
         await _context.SaveChangesAsync();
@@ -44,17 +66,23 @@ public class CategoriesController : ControllerBase
         return CreatedAtAction(
             nameof(GetCategory),
             new { id = category.Id },
-            category
+            new CategoryResponseDto
+            {
+                Id = category.Id,
+                Name = category.Name
+            }
         );
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCategory(int id, Category category)
+    public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryDto categoryDto)
     {
-        if (id != category.Id)
-            return BadRequest();
+        var category = await _context.Categories.FindAsync(id);
 
-        _context.Entry(category).State = EntityState.Modified;
+        if (category == null)
+            return NotFound("Categoria não encontrada.");
+
+        category.Name = categoryDto.Name;
 
         await _context.SaveChangesAsync();
 
@@ -67,7 +95,7 @@ public class CategoriesController : ControllerBase
         var category = await _context.Categories.FindAsync(id);
 
         if (category == null)
-            return NotFound();
+            return NotFound("Categoria não encontrada.");
 
         _context.Categories.Remove(category);
 
