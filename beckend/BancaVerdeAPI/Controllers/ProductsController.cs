@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
+using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -34,7 +35,11 @@ public class ProductsController : ControllerBase
             })
             .ToListAsync();
 
-        return Ok(products);
+        return Ok(new ApiResponse<List<ProductResponseDto>>(
+            true,
+            "Produtos encontrados com sucesso.",
+            products
+        ));
     }
 
     [HttpGet("{id}")]
@@ -54,9 +59,16 @@ public class ProductsController : ControllerBase
             .FirstOrDefaultAsync();
 
         if (product == null)
-            return NotFound("Produto não encontrado.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Produto não encontrado."
+            ));
 
-        return Ok(product);
+        return Ok(new ApiResponse<ProductResponseDto>(
+            true,
+            "Produto encontrado com sucesso.",
+            product
+        ));
     }
 
     [HttpGet("search/{name}")]
@@ -75,7 +87,11 @@ public class ProductsController : ControllerBase
             })
             .ToListAsync();
 
-        return Ok(products);
+        return Ok(new ApiResponse<List<ProductResponseDto>>(
+            true,
+            "Busca realizada com sucesso.",
+            products
+        ));
     }
 
     [HttpGet("category/{categoryId}")]
@@ -94,7 +110,11 @@ public class ProductsController : ControllerBase
             })
             .ToListAsync();
 
-        return Ok(products);
+        return Ok(new ApiResponse<List<ProductResponseDto>>(
+            true,
+            "Produtos da categoria encontrados com sucesso.",
+            products
+        ));
     }
 
     [Authorize(Roles = "Admin")]
@@ -105,7 +125,10 @@ public class ProductsController : ControllerBase
             .AnyAsync(c => c.Id == productDto.CategoryId);
 
         if (!categoryExists)
-            return BadRequest("Categoria não encontrada.");
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Categoria não encontrada."
+            ));
 
         var product = new Product
         {
@@ -119,10 +142,23 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
+        var response = new ProductResponseDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Price = product.Price,
+            Stock = product.Stock,
+            CategoryName = ""
+        };
+
         return CreatedAtAction(
             nameof(GetProduct),
             new { id = product.Id },
-            product
+            new ApiResponse<ProductResponseDto>(
+                true,
+                "Produto criado com sucesso.",
+                response
+            )
         );
     }
 
@@ -133,13 +169,19 @@ public class ProductsController : ControllerBase
         var product = await _context.Products.FindAsync(id);
 
         if (product == null)
-            return NotFound("Produto não encontrado.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Produto não encontrado."
+            ));
 
         var categoryExists = await _context.Categories
             .AnyAsync(c => c.Id == updatedProduct.CategoryId);
 
         if (!categoryExists)
-            return BadRequest("Categoria não encontrada.");
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Categoria não encontrada."
+            ));
 
         product.Name = updatedProduct.Name;
         product.Price = updatedProduct.Price;
@@ -148,7 +190,10 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(new ApiResponse<object>(
+            true,
+            "Produto atualizado com sucesso."
+        ));
     }
 
     [Authorize(Roles = "Admin")]
@@ -158,12 +203,18 @@ public class ProductsController : ControllerBase
         var product = await _context.Products.FindAsync(id);
 
         if (product == null)
-            return NotFound("Produto não encontrado.");
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Produto não encontrado."
+            ));
 
         _context.Products.Remove(product);
 
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(new ApiResponse<object>(
+            true,
+            "Produto removido com sucesso."
+        ));
     }
 }
