@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using BancaVerdeAPI.Data;
+using BancaVerdeAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,6 +84,8 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseStaticFiles();
 
 app.UseSwagger();
@@ -95,6 +98,7 @@ app.UseSwaggerUI(options =>
 app.UseCors("FrontendPolicy");
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
