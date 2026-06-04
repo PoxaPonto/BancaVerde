@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
+using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -59,18 +60,21 @@ public class DashboardController : ControllerBase
             .OrderByDescending(c => c.ProductCount)
             .FirstOrDefaultAsync();
 
-        return Ok(new
+        var dashboard = new
         {
             TotalProducts = totalProducts,
             TotalCategories = totalCategories,
             TotalStock = totalStock,
             TotalInventoryValue = totalInventoryValue,
-
             MostExpensiveProduct = mostExpensiveProduct,
-
             CheapestProduct = cheapestProduct,
-
             CategoryWithMostProducts = categoryWithMostProducts
-        });
+        };
+
+        return Ok(new ApiResponse<object>(
+            true,
+            "Dashboard carregado com sucesso.",
+            dashboard
+        ));
     }
 }

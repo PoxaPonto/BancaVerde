@@ -7,6 +7,7 @@ using System.Text;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
+using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
 
@@ -32,7 +33,10 @@ public class AuthController : ControllerBase
             .AnyAsync(u => u.Email == request.Email);
 
         if (emailExists)
-            return BadRequest("Este e-mail já está cadastrado.");
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Este e-mail já está cadastrado."
+            ));
 
         var user = new User
         {
@@ -46,7 +50,10 @@ public class AuthController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok("Usuário cadastrado com sucesso.");
+        return Ok(new ApiResponse<object>(
+            true,
+            "Usuário cadastrado com sucesso."
+        ));
     }
 
     [HttpPost("login")]
@@ -56,7 +63,10 @@ public class AuthController : ControllerBase
             .FirstOrDefaultAsync(u => u.Email == loginData.Email);
 
         if (user == null)
-            return Unauthorized("E-mail ou senha inválidos.");
+            return Unauthorized(new ApiResponse<object>(
+                false,
+                "E-mail ou senha inválidos."
+            ));
 
         bool passwordValid = BCrypt.Net.BCrypt.Verify(
             loginData.Password,
@@ -64,7 +74,10 @@ public class AuthController : ControllerBase
         );
 
         if (!passwordValid)
-            return Unauthorized("E-mail ou senha inválidos.");
+            return Unauthorized(new ApiResponse<object>(
+                false,
+                "E-mail ou senha inválidos."
+            ));
 
         var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -92,14 +105,19 @@ public class AuthController : ControllerBase
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        return Ok(new
+        var loginResponse = new
         {
-            Message = "Login realizado com sucesso.",
             Token = tokenHandler.WriteToken(token),
             UserId = user.Id,
             Name = user.Name,
             Email = user.Email,
             Role = user.Role
-        });
+        };
+
+        return Ok(new ApiResponse<object>(
+            true,
+            "Login realizado com sucesso.",
+            loginResponse
+        ));
     }
 }
