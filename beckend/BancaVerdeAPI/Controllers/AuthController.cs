@@ -79,6 +79,10 @@ public class AuthController : ControllerBase
                 "E-mail ou senha inválidos."
             ));
 
+        var userRole = string.IsNullOrWhiteSpace(user.Role)
+            ? "User"
+            : user.Role;
+
         var tokenHandler = new JwtSecurityTokenHandler();
 
         var key = Encoding.UTF8.GetBytes(
@@ -92,7 +96,7 @@ public class AuthController : ControllerBase
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, userRole)
             }),
 
             Expires = DateTime.UtcNow.AddHours(2),
@@ -111,7 +115,7 @@ public class AuthController : ControllerBase
             UserId = user.Id,
             Name = user.Name,
             Email = user.Email,
-            Role = user.Role
+            Role = userRole
         };
 
         return Ok(new ApiResponse<object>(
