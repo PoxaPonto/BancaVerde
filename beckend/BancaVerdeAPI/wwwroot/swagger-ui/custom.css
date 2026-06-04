@@ -1,0 +1,101 @@
+body,
+.swagger-ui {
+    background: #121212 !important;
+    color: #e4e4e4 !important;
+}
+
+/* Topo */
+.swagger-ui .topbar {
+    background: #0d0d0d !important;
+}
+
+/* Títulos */
+.swagger-ui .info .title,
+.swagger-ui .opblock-tag,
+.swagger-ui h1,
+.swagger-ui h2,
+.swagger-ui h3,
+.swagger-ui h4,
+.swagger-ui label,
+.swagger-ui p,
+.swagger-ui span,
+.swagger-ui div {
+    color: #e4e4e4;
+}
+
+/* Blocos */
+.swagger-ui .opblock,
+.swagger-ui .opblock-body,
+.swagger-ui .responses-wrapper,
+.swagger-ui .parameters-container,
+.swagger-ui .scheme-container {
+    background: #1b1b1b !important;
+}
+
+/* Cabeçalhos cinza */
+.swagger-ui .opblock-section-header,
+.swagger-ui .responses-header,
+.swagger-ui .parameters-col_description,
+.swagger-ui .response-col_description {
+    background: #2a2a2a !important;
+    color: #e4e4e4 !important;
+}
+
+/* Tabelas */
+.swagger-ui table,
+.swagger-ui table tbody tr td,
+.swagger-ui table thead tr th {
+    background: #1f1f1f !important;
+    color: #e4e4e4 !important;
+}
+
+/* Inputs */
+.swagger-ui input,
+.swagger-ui textarea,
+.swagger-ui select {
+    background: #2b2b2b !important;
+    color: #fff !important;
+    border: 1px solid #555 !important;
+}
+
+/* JSON */
+.swagger-ui pre,
+.swagger-ui code,
+.swagger-ui .highlight-code {
+    background: #202020 !important;
+    color: #e4e4e4 !important;
+}
+
+/* Modal Authorize */
+.swagger-ui .dialog-ux {
+    background: #1b1b1b !important;
+    color: #e4e4e4 !important;
+    border: 1px solid #333 !important;
+}
+
+.swagger-ui .dialog-ux .modal-ux {
+    background: #1b1b1b !important;
+}
+
+.swagger-ui .dialog-ux .modal-ux-header {
+    background: #252525 !important;
+}
+
+.swagger-ui .dialog-ux .modal-ux-header h3 {
+    color: #fff !important;
+}
+
+.swagger-ui .auth-container,
+.swagger-ui .auth-container * {
+    color: #e4e4e4 !important;
+}
+
+.swagger-ui .dialog-ux input {
+    background: #2b2b2b !important;
+    color: #fff !important;
+    border: 1px solid #555 !important;
+}
+
+.swagger-ui .close-modal {
+    color: #fff !important;
+}

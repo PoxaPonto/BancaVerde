@@ -83,8 +83,14 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.UseSwagger();
-app.UseSwaggerUI();
+
+app.UseSwaggerUI(options =>
+{
+    options.InjectStylesheet("/swagger-ui/custom.css");
+});
 
 app.UseCors("FrontendPolicy");
 
