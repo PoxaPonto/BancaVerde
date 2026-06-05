@@ -23,12 +23,13 @@ public class DashboardController : ControllerBase
     public async Task<IActionResult> GetDashboard()
     {
         var totalProducts = await _context.Products.CountAsync();
-
         var totalCategories = await _context.Categories.CountAsync();
-
         var totalUsers = await _context.Users.CountAsync();
 
         var totalStock = await _context.Products.SumAsync(p => p.Stock);
+
+        var lowStockProducts = await _context.Products
+            .CountAsync(p => p.Stock <= 10);
 
         var totalInventoryValue = await _context.Products
             .SumAsync(p => p.Price * p.Stock);
@@ -63,16 +64,27 @@ public class DashboardController : ControllerBase
             .OrderByDescending(c => c.ProductCount)
             .FirstOrDefaultAsync();
 
+        var productsByCategory = await _context.Categories
+            .Select(c => new CategoryChartDto
+            {
+                CategoryName = c.Name,
+                ProductCount = c.Products.Count,
+                TotalStock = c.Products.Sum(p => p.Stock)
+            })
+            .ToListAsync();
+
         var dashboard = new DashboardResponseDto
         {
             TotalProducts = totalProducts,
             TotalCategories = totalCategories,
             TotalUsers = totalUsers,
             TotalStock = totalStock,
+            LowStockProducts = lowStockProducts,
             TotalInventoryValue = totalInventoryValue,
             MostExpensiveProduct = mostExpensiveProduct,
             CheapestProduct = cheapestProduct,
-            CategoryWithMostProducts = categoryWithMostProducts
+            CategoryWithMostProducts = categoryWithMostProducts,
+            ProductsByCategory = productsByCategory
         };
 
         return Ok(new ApiResponse<DashboardResponseDto>(

@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    Tooltip,
+    ResponsiveContainer
+} from "recharts";
 import api from "../../services/api";
 
 export default function Dashboard() {
@@ -45,7 +53,66 @@ export default function Dashboard() {
                 <Card title="Categorias" value={dashboard.totalCategories} icon="🏷️" />
                 <Card title="Usuários" value={dashboard.totalUsers} icon="👥" />
                 <Card title="Estoque Total" value={dashboard.totalStock} icon="📈" />
+                <Card title="Estoque Baixo" value={dashboard.lowStockProducts} icon="⚠️" warning />
                 <Card title="Valor em Estoque" value={`R$ ${dashboard.totalInventoryValue}`} icon="💰" />
+            </div>
+
+            <div style={chartsGridStyle}>
+                <div style={chartBoxStyle}>
+                    <h2 style={{ marginBottom: "18px" }}>
+                        Produtos por Categoria
+                    </h2>
+
+                    <div style={{ width: "100%", height: 300 }}>
+                        <ResponsiveContainer>
+                            <BarChart data={dashboard.productsByCategory}>
+                                <XAxis dataKey="categoryName" stroke="#9ca3af" />
+                                <YAxis stroke="#9ca3af" />
+                                <Tooltip
+                                    contentStyle={{
+                                        background: "#111827",
+                                        border: "1px solid #374151",
+                                        color: "#fff"
+                                    }}
+                                    labelStyle={{ color: "#fff" }}
+                                />
+                                <Bar
+                                    dataKey="productCount"
+                                    fill="#22c55e"
+                                    radius={[8, 8, 0, 0]}
+                                />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+
+                <div style={chartBoxStyle}>
+                    <h2 style={{ marginBottom: "18px" }}>
+                        Estoque por Categoria
+                    </h2>
+
+                    <div style={{ width: "100%", height: 300 }}>
+                        <ResponsiveContainer>
+                            <BarChart data={dashboard.productsByCategory}>
+                                <XAxis dataKey="categoryName" stroke="#9ca3af" />
+                                <YAxis stroke="#9ca3af" />
+                                <Tooltip
+                                    contentStyle={{
+                                        background: "#111827",
+                                        border: "1px solid #374151",
+                                        color: "#fff"
+                                    }}
+                                    labelStyle={{ color: "#fff" }}
+                                />
+                                <Bar
+                                    dataKey="totalStock"
+                                    fill="#f59e0b"
+                                    radius={[8, 8, 0, 0]}
+                                />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
             </div>
 
             <div style={infoGridStyle}>
@@ -80,15 +147,36 @@ export default function Dashboard() {
     );
 }
 
-function Card({ title, value, icon }) {
+function Card({ title, value, icon, warning }) {
     return (
-        <div style={cardStyle}>
+        <div
+            style={{
+                ...cardStyle,
+                border: warning
+                    ? "1px solid #f59e0b"
+                    : "1px solid #1f2937"
+            }}
+        >
             <div>
                 <p style={cardTitleStyle}>{title}</p>
-                <h2 style={cardValueStyle}>{value}</h2>
+                <h2
+                    style={{
+                        ...cardValueStyle,
+                        color: warning ? "#fbbf24" : "#ffffff"
+                    }}
+                >
+                    {value}
+                </h2>
             </div>
 
-            <span style={cardIconStyle}>{icon}</span>
+            <span
+                style={{
+                    ...cardIconStyle,
+                    background: warning ? "#451a03" : "#1f2937"
+                }}
+            >
+                {icon}
+            </span>
         </div>
     );
 }
@@ -111,7 +199,6 @@ const cardsContainerStyle = {
 
 const cardStyle = {
     background: "#111827",
-    border: "1px solid #1f2937",
     borderRadius: "14px",
     padding: "22px",
     display: "flex",
@@ -127,15 +214,28 @@ const cardTitleStyle = {
 
 const cardValueStyle = {
     marginTop: "10px",
-    fontSize: "28px",
-    color: "#ffffff"
+    fontSize: "28px"
 };
 
 const cardIconStyle = {
     fontSize: "34px",
-    background: "#1f2937",
     padding: "12px",
     borderRadius: "12px"
+};
+
+const chartsGridStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))",
+    gap: "18px",
+    marginBottom: "26px"
+};
+
+const chartBoxStyle = {
+    background: "#111827",
+    border: "1px solid #1f2937",
+    borderRadius: "14px",
+    padding: "22px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
 };
 
 const infoGridStyle = {
