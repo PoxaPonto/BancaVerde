@@ -6,9 +6,22 @@ import UserModal from "../../components/UserModal";
 
 export default function Users() {
     const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState("");
+    const [roleFilter, setRoleFilter] = useState("all");
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [userToEdit, setUserToEdit] = useState(null);
+
+    const filteredUsers = users
+        .filter((user) =>
+            user.name.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase())
+        )
+        .filter((user) =>
+            roleFilter === "all"
+                ? true
+                : user.role === roleFilter
+        );
 
     useEffect(() => {
         loadUsers();
@@ -102,51 +115,93 @@ export default function Users() {
                 </button>
             </div>
 
-            <table style={tableStyle}>
-                <thead>
-                    <tr style={{ background: "#1f2937" }}>
-                        <th style={thStyle}>ID</th>
-                        <th style={thStyle}>Nome</th>
-                        <th style={thStyle}>E-mail</th>
-                        <th style={thStyle}>Permissão</th>
-                        <th style={thStyle}>Ações</th>
-                    </tr>
-                </thead>
+            <div style={filtersContainerStyle}>
+                <input
+                    type="text"
+                    placeholder="Pesquisar por nome ou e-mail..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={filterInputStyle}
+                />
 
-                <tbody>
-                    {users.map((user) => (
-                        <tr key={user.id}>
-                            <td style={tdStyle}>{user.id}</td>
-                            <td style={tdStyle}>{user.name}</td>
-                            <td style={tdStyle}>{user.email}</td>
-                            <td style={tdStyle}>{user.role}</td>
+                <select
+                    value={roleFilter}
+                    onChange={(e) => setRoleFilter(e.target.value)}
+                    style={filterInputStyle}
+                >
+                    <option value="all">Todas permissões</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
 
-                            <td style={tdStyle}>
-                                <button
-                                    onClick={() => handleEdit(user)}
-                                    style={{
-                                        ...actionButtonStyle,
-                                        background: "#2563eb"
-                                    }}
-                                >
-                                    Editar
-                                </button>
-
-                                <button
-                                    onClick={() => handleDelete(user)}
-                                    style={{
-                                        ...actionButtonStyle,
-                                        background: "#dc2626",
-                                        marginLeft: "8px"
-                                    }}
-                                >
-                                    Excluir
-                                </button>
-                            </td>
+            {filteredUsers.length === 0 ? (
+                <p style={{ color: "#9ca3af", marginTop: "20px" }}>
+                    Nenhum usuário encontrado.
+                </p>
+            ) : (
+                <table style={tableStyle}>
+                    <thead>
+                        <tr style={{ background: "#1f2937" }}>
+                            <th style={thStyle}>ID</th>
+                            <th style={thStyle}>Nome</th>
+                            <th style={thStyle}>E-mail</th>
+                            <th style={thStyle}>Permissão</th>
+                            <th style={thStyle}>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        {filteredUsers.map((user) => (
+                            <tr key={user.id}>
+                                <td style={tdStyle}>{user.id}</td>
+                                <td style={tdStyle}>{user.name}</td>
+                                <td style={tdStyle}>{user.email}</td>
+                                <td style={tdStyle}>
+                                    <span
+                                        style={{
+                                            ...roleBadgeStyle,
+                                            background:
+                                                user.role === "Admin"
+                                                    ? "#14532d"
+                                                    : "#1e3a8a",
+                                            color:
+                                                user.role === "Admin"
+                                                    ? "#86efac"
+                                                    : "#93c5fd"
+                                        }}
+                                    >
+                                        {user.role}
+                                    </span>
+                                </td>
+
+                                <td style={tdStyle}>
+                                    <button
+                                        onClick={() => handleEdit(user)}
+                                        style={{
+                                            ...actionButtonStyle,
+                                            background: "#2563eb"
+                                        }}
+                                    >
+                                        Editar
+                                    </button>
+
+                                    <button
+                                        onClick={() => handleDelete(user)}
+                                        style={{
+                                            ...actionButtonStyle,
+                                            background: "#dc2626",
+                                            marginLeft: "8px"
+                                        }}
+                                    >
+                                        Excluir
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 }
@@ -164,6 +219,21 @@ const newButtonStyle = {
     background: "#22c55e",
     color: "#fff",
     fontWeight: "bold"
+};
+
+const filtersContainerStyle = {
+    display: "flex",
+    gap: "12px",
+    marginBottom: "18px"
+};
+
+const filterInputStyle = {
+    flex: 1,
+    padding: "14px",
+    borderRadius: "10px",
+    background: "#111827",
+    color: "#fff",
+    border: "1px solid #374151"
 };
 
 const tableStyle = {
@@ -191,5 +261,12 @@ const actionButtonStyle = {
     padding: "8px 12px",
     borderRadius: "6px",
     color: "#fff",
+    fontWeight: "bold"
+};
+
+const roleBadgeStyle = {
+    padding: "6px 10px",
+    borderRadius: "999px",
+    fontSize: "13px",
     fontWeight: "bold"
 };

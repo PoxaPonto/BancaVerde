@@ -16,6 +16,8 @@ namespace BancaVerdeAPI.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<StockMovement> StockMovements { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()

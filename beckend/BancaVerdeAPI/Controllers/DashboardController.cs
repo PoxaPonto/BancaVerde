@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
+using BancaVerdeAPI.DTOs;
 using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
@@ -24,6 +25,8 @@ public class DashboardController : ControllerBase
         var totalProducts = await _context.Products.CountAsync();
 
         var totalCategories = await _context.Categories.CountAsync();
+
+        var totalUsers = await _context.Users.CountAsync();
 
         var totalStock = await _context.Products.SumAsync(p => p.Stock);
 
@@ -60,10 +63,11 @@ public class DashboardController : ControllerBase
             .OrderByDescending(c => c.ProductCount)
             .FirstOrDefaultAsync();
 
-        var dashboard = new
+        var dashboard = new DashboardResponseDto
         {
             TotalProducts = totalProducts,
             TotalCategories = totalCategories,
+            TotalUsers = totalUsers,
             TotalStock = totalStock,
             TotalInventoryValue = totalInventoryValue,
             MostExpensiveProduct = mostExpensiveProduct,
@@ -71,7 +75,7 @@ public class DashboardController : ControllerBase
             CategoryWithMostProducts = categoryWithMostProducts
         };
 
-        return Ok(new ApiResponse<object>(
+        return Ok(new ApiResponse<DashboardResponseDto>(
             true,
             "Dashboard carregado com sucesso.",
             dashboard

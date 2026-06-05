@@ -25,6 +25,11 @@ export default function Login() {
                 response.data.data.token
             );
 
+            localStorage.setItem(
+                "user",
+                JSON.stringify(response.data.data)
+            );
+
             navigate("/dashboard");
         }
         catch (error) {

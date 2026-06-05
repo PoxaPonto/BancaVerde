@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
@@ -142,6 +143,22 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
+        var userName =
+            User.FindFirst(ClaimTypes.Name)?.Value ??
+            User.FindFirst("name")?.Value ??
+            User.FindFirst(ClaimTypes.Email)?.Value ??
+            "Desconhecido";
+
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = "CREATE",
+            UserName = userName,
+            ProductName = product.Name,
+            NewStock = product.Stock
+        });
+
+        await _context.SaveChangesAsync();
+
         var response = new ProductResponseDto
         {
             Id = product.Id,
@@ -164,7 +181,9 @@ public class ProductsController : ControllerBase
 
     [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduct(int id, UpdateProductDto updatedProduct)
+    public async Task<IActionResult> UpdateProduct(
+        int id,
+        UpdateProductDto updatedProduct)
     {
         var product = await _context.Products.FindAsync(id);
 
@@ -183,10 +202,29 @@ public class ProductsController : ControllerBase
                 "Categoria não encontrada."
             ));
 
+        var oldStock = product.Stock;
+
         product.Name = updatedProduct.Name;
         product.Price = updatedProduct.Price;
         product.Stock = updatedProduct.Stock;
         product.CategoryId = updatedProduct.CategoryId;
+
+        await _context.SaveChangesAsync();
+
+        var userName =
+            User.FindFirst(ClaimTypes.Name)?.Value ??
+            User.FindFirst("name")?.Value ??
+            User.FindFirst(ClaimTypes.Email)?.Value ??
+            "Desconhecido";
+
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = "UPDATE",
+            UserName = userName,
+            ProductName = product.Name,
+            OldStock = oldStock,
+            NewStock = product.Stock
+        });
 
         await _context.SaveChangesAsync();
 
@@ -207,6 +245,20 @@ public class ProductsController : ControllerBase
                 false,
                 "Produto não encontrado."
             ));
+
+        var userName =
+            User.FindFirst(ClaimTypes.Name)?.Value ??
+            User.FindFirst("name")?.Value ??
+            User.FindFirst(ClaimTypes.Email)?.Value ??
+            "Desconhecido";
+
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = "DELETE",
+            UserName = userName,
+            ProductName = product.Name,
+            OldStock = product.Stock
+        });
 
         _context.Products.Remove(product);
 

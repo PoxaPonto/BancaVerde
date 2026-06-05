@@ -41,29 +41,11 @@ export default function Dashboard() {
             </div>
 
             <div style={cardsContainerStyle}>
-                <Card
-                    title="Total de Produtos"
-                    value={dashboard.totalProducts}
-                    icon="📦"
-                />
-
-                <Card
-                    title="Categorias"
-                    value={dashboard.totalCategories}
-                    icon="🏷️"
-                />
-
-                <Card
-                    title="Estoque Total"
-                    value={dashboard.totalStock}
-                    icon="📈"
-                />
-
-                <Card
-                    title="Valor em Estoque"
-                    value={`R$ ${dashboard.totalInventoryValue}`}
-                    icon="💰"
-                />
+                <Card title="Total de Produtos" value={dashboard.totalProducts} icon="📦" />
+                <Card title="Categorias" value={dashboard.totalCategories} icon="🏷️" />
+                <Card title="Usuários" value={dashboard.totalUsers} icon="👥" />
+                <Card title="Estoque Total" value={dashboard.totalStock} icon="📈" />
+                <Card title="Valor em Estoque" value={`R$ ${dashboard.totalInventoryValue}`} icon="💰" />
             </div>
 
             <div style={infoGridStyle}>
@@ -122,7 +104,7 @@ function InfoBox({ title, value }) {
 
 const cardsContainerStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
     gap: "18px",
     marginBottom: "26px"
 };

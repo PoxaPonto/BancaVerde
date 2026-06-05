@@ -5,6 +5,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Products from "../pages/Products/Products";
 import Categories from "../pages/Categories/Categories";
 import Users from "../pages/Users/Users";
+import Movements from "../pages/Movements/Movements";
 import Layout from "../components/Layout/Layout";
 import PrivateRoute from "./PrivateRoute";
 
@@ -25,6 +26,7 @@ export default function AppRoutes() {
                     <Route path="/products" element={<Products />} />
                     <Route path="/categories" element={<Categories />} />
                     <Route path="/users" element={<Users />} />
+                    <Route path="/movements" element={<Movements />} />
                 </Route>
             </Routes>
         </BrowserRouter>
