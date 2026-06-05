@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../services/api";
 
 export default function ProductModal({
@@ -48,7 +49,7 @@ export default function ProductModal({
         }
         catch (error) {
             console.error(error);
-            alert("Erro ao carregar categorias.");
+            toast.error("Erro ao carregar categorias.");
         }
     }
 
@@ -76,12 +77,12 @@ export default function ProductModal({
                     productData
                 );
 
-                alert("Produto atualizado com sucesso.");
+                toast.success("Produto atualizado com sucesso!");
             }
             else {
                 await api.post("/Products", productData);
 
-                alert("Produto cadastrado com sucesso.");
+                toast.success("Produto cadastrado com sucesso!");
             }
 
             onProductSaved();
@@ -89,7 +90,8 @@ export default function ProductModal({
         }
         catch (error) {
             console.error(error);
-            alert(
+
+            toast.error(
                 error.response?.data?.message ||
                 "Erro ao salvar produto."
             );

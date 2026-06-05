@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 import CategoryModal from "../../components/CategoryModal";
 
@@ -19,7 +20,7 @@ export default function Categories() {
         }
         catch (error) {
             console.error(error);
-            alert("Erro ao carregar categorias.");
+            toast.error("Erro ao carregar categorias.");
         }
         finally {
             setLoading(false);
@@ -48,14 +49,14 @@ export default function Categories() {
         try {
             await api.delete(`/Categories/${id}`);
 
-            alert("Categoria excluída com sucesso.");
+            toast.success("Categoria excluída com sucesso!");
 
             loadCategories();
         }
         catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Erro ao excluir categoria."
             );

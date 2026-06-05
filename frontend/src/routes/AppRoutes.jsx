@@ -5,6 +5,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Products from "../pages/Products/Products";
 import Categories from "../pages/Categories/Categories";
 import Layout from "../components/Layout/Layout";
+import PrivateRoute from "./PrivateRoute";
 
 export default function AppRoutes() {
     return (
@@ -12,7 +13,13 @@ export default function AppRoutes() {
             <Routes>
                 <Route path="/" element={<Login />} />
 
-                <Route element={<Layout />}>
+                <Route
+                    element={
+                        <PrivateRoute>
+                            <Layout />
+                        </PrivateRoute>
+                    }
+                >
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/categories" element={<Categories />} />

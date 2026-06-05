@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../services/api";
 
 export default function CategoryModal({
@@ -36,12 +37,12 @@ export default function CategoryModal({
                     categoryData
                 );
 
-                alert("Categoria atualizada com sucesso.");
+                toast.success("Categoria atualizada com sucesso!");
             }
             else {
                 await api.post("/Categories", categoryData);
 
-                alert("Categoria cadastrada com sucesso.");
+                toast.success("Categoria cadastrada com sucesso!");
             }
 
             onCategorySaved();
@@ -50,7 +51,7 @@ export default function CategoryModal({
         catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Erro ao salvar categoria."
             );

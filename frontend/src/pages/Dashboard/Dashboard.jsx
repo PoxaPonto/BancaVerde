@@ -9,9 +9,6 @@ export default function Dashboard() {
         async function loadDashboard() {
             try {
                 const response = await api.get("/Dashboard");
-
-                console.log("Resposta Dashboard:", response.data);
-
                 setDashboard(response.data.data);
             }
             catch (error) {
@@ -27,46 +24,147 @@ export default function Dashboard() {
     }, []);
 
     if (loading) {
-        return (
-            <div style={{ padding: "20px" }}>
-                <h2>Carregando dashboard...</h2>
-            </div>
-        );
+        return <h2>Carregando dashboard...</h2>;
     }
 
     if (!dashboard) {
-        return (
-            <div style={{ padding: "20px" }}>
-                <h2>Nenhum dado encontrado.</h2>
-            </div>
-        );
+        return <h2>Nenhum dado encontrado.</h2>;
     }
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1>Dashboard</h1>
+        <div>
+            <div style={{ marginBottom: "28px" }}>
+                <h1>Dashboard</h1>
+                <p style={{ color: "#9ca3af", marginTop: "6px" }}>
+                    Visão geral do estoque e desempenho da Banca Verde.
+                </p>
+            </div>
 
-            <p>Produtos: {dashboard.totalProducts}</p>
-            <p>Categorias: {dashboard.totalCategories}</p>
-            <p>Estoque Total: {dashboard.totalStock}</p>
-            <p>Valor do Estoque: R$ {dashboard.totalInventoryValue}</p>
+            <div style={cardsContainerStyle}>
+                <Card
+                    title="Total de Produtos"
+                    value={dashboard.totalProducts}
+                    icon="📦"
+                />
 
-            <hr />
+                <Card
+                    title="Categorias"
+                    value={dashboard.totalCategories}
+                    icon="🏷️"
+                />
 
-            <h2>Produto mais caro</h2>
-            <p>
-                {dashboard.mostExpensiveProduct?.name || "Não encontrado"} - R$ {dashboard.mostExpensiveProduct?.price || 0}
-            </p>
+                <Card
+                    title="Estoque Total"
+                    value={dashboard.totalStock}
+                    icon="📈"
+                />
 
-            <h2>Produto mais barato</h2>
-            <p>
-                {dashboard.cheapestProduct?.name || "Não encontrado"} - R$ {dashboard.cheapestProduct?.price || 0}
-            </p>
+                <Card
+                    title="Valor em Estoque"
+                    value={`R$ ${dashboard.totalInventoryValue}`}
+                    icon="💰"
+                />
+            </div>
 
-            <h2>Categoria com mais produtos</h2>
-            <p>
-                {dashboard.categoryWithMostProducts?.name || "Não encontrada"} - {dashboard.categoryWithMostProducts?.productCount || 0} produtos
-            </p>
+            <div style={infoGridStyle}>
+                <InfoBox
+                    title="Produto mais caro"
+                    value={
+                        dashboard.mostExpensiveProduct
+                            ? `${dashboard.mostExpensiveProduct.name} - R$ ${dashboard.mostExpensiveProduct.price}`
+                            : "Não encontrado"
+                    }
+                />
+
+                <InfoBox
+                    title="Produto mais barato"
+                    value={
+                        dashboard.cheapestProduct
+                            ? `${dashboard.cheapestProduct.name} - R$ ${dashboard.cheapestProduct.price}`
+                            : "Não encontrado"
+                    }
+                />
+
+                <InfoBox
+                    title="Categoria com mais produtos"
+                    value={
+                        dashboard.categoryWithMostProducts
+                            ? `${dashboard.categoryWithMostProducts.name} - ${dashboard.categoryWithMostProducts.productCount} produtos`
+                            : "Não encontrada"
+                    }
+                />
+            </div>
         </div>
     );
 }
+
+function Card({ title, value, icon }) {
+    return (
+        <div style={cardStyle}>
+            <div>
+                <p style={cardTitleStyle}>{title}</p>
+                <h2 style={cardValueStyle}>{value}</h2>
+            </div>
+
+            <span style={cardIconStyle}>{icon}</span>
+        </div>
+    );
+}
+
+function InfoBox({ title, value }) {
+    return (
+        <div style={infoBoxStyle}>
+            <p style={cardTitleStyle}>{title}</p>
+            <h3 style={{ marginTop: "10px" }}>{value}</h3>
+        </div>
+    );
+}
+
+const cardsContainerStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "18px",
+    marginBottom: "26px"
+};
+
+const cardStyle = {
+    background: "#111827",
+    border: "1px solid #1f2937",
+    borderRadius: "14px",
+    padding: "22px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
+};
+
+const cardTitleStyle = {
+    color: "#9ca3af",
+    fontSize: "14px"
+};
+
+const cardValueStyle = {
+    marginTop: "10px",
+    fontSize: "28px",
+    color: "#ffffff"
+};
+
+const cardIconStyle = {
+    fontSize: "34px",
+    background: "#1f2937",
+    padding: "12px",
+    borderRadius: "12px"
+};
+
+const infoGridStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "18px"
+};
+
+const infoBoxStyle = {
+    background: "#111827",
+    border: "1px solid #1f2937",
+    borderRadius: "14px",
+    padding: "22px"
+};
