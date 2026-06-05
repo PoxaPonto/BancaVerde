@@ -26,6 +26,7 @@ export default function Layout() {
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/products">Produtos</Link>
                     <Link to="/categories">Categorias</Link>
+                    <Link to="/users">Usuários</Link>
 
                     <button
                         onClick={handleLogout}

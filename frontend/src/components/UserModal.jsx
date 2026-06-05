@@ -2,56 +2,41 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
-export default function ProductModal({
+export default function UserModal({
     isOpen,
     onClose,
-    onProductSaved,
-    productToEdit
+    onUserSaved,
+    userToEdit
 }) {
-    const [categories, setCategories] = useState([]);
-
     const [form, setForm] = useState({
         name: "",
-        price: "",
-        stock: "",
-        categoryId: ""
+        email: "",
+        password: "",
+        role: "User"
     });
 
-    const isEditing = !!productToEdit;
+    const isEditing = !!userToEdit;
 
     useEffect(() => {
         if (isOpen) {
-            loadCategories();
-
-            if (productToEdit) {
+            if (userToEdit) {
                 setForm({
-                    name: productToEdit.name,
-                    price: productToEdit.price,
-                    stock: productToEdit.stock,
-                    categoryId: productToEdit.categoryId || ""
+                    name: userToEdit.name,
+                    email: userToEdit.email,
+                    password: "",
+                    role: userToEdit.role
                 });
             }
             else {
                 setForm({
                     name: "",
-                    price: "",
-                    stock: "",
-                    categoryId: ""
+                    email: "",
+                    password: "",
+                    role: "User"
                 });
             }
         }
-    }, [isOpen, productToEdit]);
-
-    async function loadCategories() {
-        try {
-            const response = await api.get("/Categories");
-            setCategories(response.data.data);
-        }
-        catch (error) {
-            console.error(error);
-            toast.error("Erro ao carregar categorias.");
-        }
-    }
+    }, [isOpen, userToEdit]);
 
     function handleChange(e) {
         setForm({
@@ -64,28 +49,27 @@ export default function ProductModal({
         e.preventDefault();
 
         try {
-            const productData = {
-                name: form.name,
-                price: Number(form.price),
-                stock: Number(form.stock),
-                categoryId: Number(form.categoryId)
-            };
-
             if (isEditing) {
-                await api.put(
-                    `/Products/${productToEdit.id}`,
-                    productData
-                );
+                await api.put(`/Users/${userToEdit.id}`, {
+                    name: form.name,
+                    email: form.email,
+                    role: form.role
+                });
 
-                toast.success("Produto atualizado com sucesso!");
+                toast.success("Usuário atualizado com sucesso!");
             }
             else {
-                await api.post("/Products", productData);
+                await api.post("/Users", {
+                    name: form.name,
+                    email: form.email,
+                    password: form.password,
+                    role: form.role
+                });
 
-                toast.success("Produto cadastrado com sucesso!");
+                toast.success("Usuário cadastrado com sucesso!");
             }
 
-            onProductSaved();
+            onUserSaved();
             onClose();
         }
         catch (error) {
@@ -93,7 +77,7 @@ export default function ProductModal({
 
             toast.error(
                 error.response?.data?.message ||
-                "Erro ao salvar produto."
+                "Erro ao salvar usuário."
             );
         }
     }
@@ -105,57 +89,45 @@ export default function ProductModal({
     return (
         <div style={overlayStyle}>
             <div style={modalStyle}>
-                <h2>
-                    {isEditing ? "Editar Produto" : "Novo Produto"}
-                </h2>
+                <h2>{isEditing ? "Editar Usuário" : "Novo Usuário"}</h2>
 
                 <form onSubmit={handleSubmit}>
                     <input
                         name="name"
-                        placeholder="Nome do produto"
+                        placeholder="Nome"
                         value={form.name}
                         onChange={handleChange}
                         style={inputStyle}
                     />
 
                     <input
-                        name="price"
-                        type="text"
-                        input="decimal"
-                        placeholder="Preço"
-                        value={form.price}
+                        name="email"
+                        type="email"
+                        placeholder="E-mail"
+                        value={form.email}
                         onChange={handleChange}
                         style={inputStyle}
                     />
 
-                    <input
-                        name="stock"
-                        type="text"
-                        inputMode="numeric"
-                        placeholder="Estoque"
-                        value={form.stock}
-                        onChange={handleChange}
-                        style={inputStyle}
-                    />
+                    {!isEditing && (
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Senha"
+                            value={form.password}
+                            onChange={handleChange}
+                            style={inputStyle}
+                        />
+                    )}
 
                     <select
-                        name="categoryId"
-                        value={form.categoryId}
+                        name="role"
+                        value={form.role}
                         onChange={handleChange}
                         style={inputStyle}
                     >
-                        <option value="">
-                            Selecione uma categoria
-                        </option>
-
-                        {categories.map((category) => (
-                            <option
-                                key={category.id}
-                                value={category.id}
-                            >
-                                {category.name}
-                            </option>
-                        ))}
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
                     </select>
 
                     <div style={buttonContainerStyle}>
