@@ -1,90 +1,25 @@
-                    <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td style={tdStyle}>{product.id}</td>
-                    
                                 <td style={tdStyle}>
-                                    {product.name}
-                                </td>
-                                        
-                                <td style={tdStyle}>
-                                    {Number(product.price).toLocaleString(
-                                        "pt-BR",
-                                        {
-                                            style: "currency",
-                                            currency: "BRL"
-                                        }
-                                    )}
-                                </td>
-                    
-                                <td style={tdStyle}>
-                                    <div
+                                    <button
+                                        onClick={() => handleDetails(product)}
                                         style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: "10px"
+                                            ...actionButtonStyle,
+                                            background: "#059669"
                                         }}
                                     >
-                                        <span>{product.stock}</span>
-                    
-                                        {product.stock <= 5 ? (
-                                            <span
-                                                style={{
-                                                    background: "#7f1d1d",
-                                                    color: "#fecaca",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                CRÍTICO
-                                            </span>
-                                        ) : product.stock <= 10 ? (
-                                            <span
-                                                style={{
-                                                    background: "#78350f",
-                                                    color: "#fde68a",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                ATENÇÃO
-                                            </span>
-                                        ) : (
-                                            <span
-                                                style={{
-                                                    background: "#14532d",
-                                                    color: "#bbf7d0",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                OK
-                                            </span>
-                                        )}
-                                    </div>
-                                </td>
-                    
-                                <td style={tdStyle}>
-                                    {product.categoryName}
-                                </td>
-                    
-                                <td style={tdStyle}>
+                                        Detalhes
+                                    </button>
+
                                     <button
                                         onClick={() => handleEdit(product)}
                                         style={{
                                             ...actionButtonStyle,
-                                            background: "#2563eb"
+                                            background: "#2563eb",
+                                            marginLeft: "8px"
                                         }}
                                     >
                                         Editar
                                     </button>
-
+                                
                                     <button
                                         onClick={() => handleDelete(product.id)}
                                         style={{
@@ -96,9 +31,3 @@
                                         Excluir
                                     </button>
                                 </td>
-                            </tr>
-                        ))}
-                    </tbody>
-
-
-

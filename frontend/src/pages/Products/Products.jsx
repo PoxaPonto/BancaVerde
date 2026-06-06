@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import api from "../../services/api";
 import ProductModal from "../../components/ProductModal";
+import ProductDetailsModal from "../../components/ProductDetailsModal";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
@@ -12,6 +13,8 @@ export default function Products() {
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState(null);
+    const [detailsOpen, setDetailsOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const categories = [
         ...new Set(products.map((product) => product.categoryName))
@@ -82,6 +85,11 @@ export default function Products() {
         setModalOpen(true);
     }
 
+    function handleDetails(product) {
+        setSelectedProduct(product);
+        setDetailsOpen(true);
+    }
+
     async function handleDelete(id) {
         const result = await Swal.fire({
             title: "Excluir produto",
@@ -129,7 +137,13 @@ export default function Products() {
                 onProductSaved={loadProducts}
                 productToEdit={productToEdit}
             />
-
+            
+            <ProductDetailsModal
+                isOpen={detailsOpen}
+                onClose={() => setDetailsOpen(false)}
+                product={selectedProduct}
+            />
+            
             <div style={headerStyle}>
                 <div>
                     <h1>Produtos</h1>
@@ -272,13 +286,24 @@ export default function Products() {
                                 <td style={tdStyle}>
                                     {product.categoryName}
                                 </td>
-                    
+                                
                                 <td style={tdStyle}>
+                                    <button
+                                        onClick={() => handleDetails(product)}
+                                        style={{
+                                            ...actionButtonStyle,
+                                            background: "#059669"
+                                        }}
+                                    >
+                                        Detalhes
+                                    </button>
+
                                     <button
                                         onClick={() => handleEdit(product)}
                                         style={{
                                             ...actionButtonStyle,
-                                            background: "#2563eb"
+                                            background: "#2563eb",
+                                            marginLeft: "8px"
                                         }}
                                     >
                                         Editar
