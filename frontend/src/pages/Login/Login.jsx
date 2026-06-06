@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 
 export default function Login() {
@@ -20,20 +21,19 @@ export default function Login() {
                 password
             });
 
-            localStorage.setItem(
-                "token",
-                response.data.data.token
-            );
+            localStorage.setItem("token", response.data.data.token);
 
             localStorage.setItem(
                 "user",
                 JSON.stringify(response.data.data)
             );
 
+            toast.success("Login realizado com sucesso!");
+
             navigate("/dashboard");
         }
         catch (error) {
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Erro ao realizar login."
             );
@@ -126,9 +126,10 @@ export default function Login() {
                         width: "100%",
                         padding: "14px",
                         borderRadius: "8px",
-                        background: "#22c55e",
+                        background: loading ? "#16a34a" : "#22c55e",
                         color: "#fff",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
+                        cursor: loading ? "not-allowed" : "pointer"
                     }}
                 >
                     {loading

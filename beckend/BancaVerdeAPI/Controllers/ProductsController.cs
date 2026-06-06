@@ -21,6 +21,14 @@ public class ProductsController : ControllerBase
         _context = context;
     }
 
+    private string GetUserName()
+    {
+        return User.FindFirst(ClaimTypes.Name)?.Value ??
+               User.FindFirst("name")?.Value ??
+               User.FindFirst(ClaimTypes.Email)?.Value ??
+               "Desconhecido";
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetProducts()
     {
@@ -143,16 +151,10 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        var userName =
-            User.FindFirst(ClaimTypes.Name)?.Value ??
-            User.FindFirst("name")?.Value ??
-            User.FindFirst(ClaimTypes.Email)?.Value ??
-            "Desconhecido";
-
         _context.StockMovements.Add(new StockMovement
         {
             Action = "CREATE",
-            UserName = userName,
+            UserName = GetUserName(),
             ProductName = product.Name,
             NewStock = product.Stock
         });
@@ -211,16 +213,10 @@ public class ProductsController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        var userName =
-            User.FindFirst(ClaimTypes.Name)?.Value ??
-            User.FindFirst("name")?.Value ??
-            User.FindFirst(ClaimTypes.Email)?.Value ??
-            "Desconhecido";
-
         _context.StockMovements.Add(new StockMovement
         {
             Action = "UPDATE",
-            UserName = userName,
+            UserName = GetUserName(),
             ProductName = product.Name,
             OldStock = oldStock,
             NewStock = product.Stock
@@ -231,6 +227,49 @@ public class ProductsController : ControllerBase
         return Ok(new ApiResponse<object>(
             true,
             "Produto atualizado com sucesso."
+        ));
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}/sale")]
+    public async Task<IActionResult> RegisterSale(
+        int id,
+        ProductSaleDto saleDto)
+    {
+        var product = await _context.Products.FindAsync(id);
+
+        if (product == null)
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Produto não encontrado."
+            ));
+
+        if (saleDto.Quantity > product.Stock)
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Quantidade vendida maior que o estoque disponível."
+            ));
+
+        var oldStock = product.Stock;
+
+        product.Stock -= saleDto.Quantity;
+
+        await _context.SaveChangesAsync();
+
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = "SALE",
+            UserName = GetUserName(),
+            ProductName = product.Name,
+            OldStock = oldStock,
+            NewStock = product.Stock
+        });
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new ApiResponse<object>(
+            true,
+            "Saída de estoque registrada com sucesso."
         ));
     }
 
@@ -246,16 +285,10 @@ public class ProductsController : ControllerBase
                 "Produto não encontrado."
             ));
 
-        var userName =
-            User.FindFirst(ClaimTypes.Name)?.Value ??
-            User.FindFirst("name")?.Value ??
-            User.FindFirst(ClaimTypes.Email)?.Value ??
-            "Desconhecido";
-
         _context.StockMovements.Add(new StockMovement
         {
             Action = "DELETE",
-            UserName = userName,
+            UserName = GetUserName(),
             ProductName = product.Name,
             OldStock = product.Stock
         });

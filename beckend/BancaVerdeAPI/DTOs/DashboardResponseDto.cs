@@ -13,5 +13,7 @@ public class DashboardResponseDto
     public object? CheapestProduct { get; set; }
     public object? CategoryWithMostProducts { get; set; }
 
+    public List<object> LowStockItems { get; set; } = new();
+
     public List<CategoryChartDto> ProductsByCategory { get; set; } = new();
 }

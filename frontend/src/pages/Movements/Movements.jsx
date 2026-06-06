@@ -4,7 +4,20 @@ import api from "../../services/api";
 
 export default function Movements() {
     const [movements, setMovements] = useState([]);
+    const [search, setSearch] = useState("");
+    const [actionFilter, setActionFilter] = useState("all");
     const [loading, setLoading] = useState(true);
+
+    const filteredMovements = movements
+        .filter((movement) =>
+            movement.userName.toLowerCase().includes(search.toLowerCase()) ||
+            movement.productName.toLowerCase().includes(search.toLowerCase())
+        )
+        .filter((movement) =>
+            actionFilter === "all"
+                ? true
+                : movement.action === actionFilter
+        );
 
     useEffect(() => {
         loadMovements();
@@ -36,16 +49,55 @@ export default function Movements() {
                 Histórico de ações realizadas pelos administradores.
             </p>
 
+            <div style={filtersContainerStyle}>
+                <input
+                    type="text"
+                    placeholder="Pesquisar por usuário ou produto..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={filterInputStyle}
+                />
+
+                <select
+                    value={actionFilter}
+                    onChange={(e) => setActionFilter(e.target.value)}
+                    style={filterInputStyle}
+                >
+                    <option value="all">Todas as ações</option>
+                    <option value="CREATE">CREATE</option>
+                    <option value="UPDATE">UPDATE</option>
+                    <option value="DELETE">DELETE</option>
+                    <option value="SALE">SALE</option>
+                </select>
+            </div>
+
             <div style={terminalStyle}>
-                {movements.length === 0 ? (
-                    <p>Nenhuma movimentação encontrada.</p>
+                {filteredMovements.length === 0 ? (
+                    <p style={{ color: "#9ca3af" }}>
+                        Nenhuma movimentação encontrada.
+                    </p>
                 ) : (
-                    movements.map((movement) => (
+                    filteredMovements.map((movement, index) => (
                         <div
                             key={movement.id}
-                            style={lineStyle}
+                            style={{
+                                ...lineStyle,
+                                ...(index === 0 ? latestLineStyle : {})
+                            }}
                         >
-                            {formatMovement(movement)}
+                            {index === 0 && (
+                                <span style={latestLabelStyle}>
+                                    ÚLTIMA MOVIMENTAÇÃO
+                                </span>
+                            )}
+
+                            <span style={actionStyle}>
+                                {movement.action}
+                            </span>
+
+                            <span>
+                                {formatMovement(movement)}
+                            </span>
                         </div>
                     ))
                 )}
@@ -71,12 +123,30 @@ function formatMovement(movement) {
         return `[${date}] ${movement.userName} removeu o produto "${movement.productName}"`;
     }
 
+    if (movement.action === "SALE") {
+        return `[${date}] ${movement.userName} registrou saída de estoque em "${movement.productName}" (${movement.oldStock} → ${movement.newStock})`;
+    }
+
     return `[${date}] ${movement.action}`;
 }
 
+const filtersContainerStyle = {
+    display: "flex",
+    gap: "12px",
+    marginBottom: "18px"
+};
+
+const filterInputStyle = {
+    flex: 1,
+    padding: "14px",
+    borderRadius: "10px",
+    background: "#111827",
+    color: "#fff",
+    border: "1px solid #374151"
+};
+
 const terminalStyle = {
     background: "#000",
-    color: "#22c55e",
     padding: "20px",
     borderRadius: "12px",
     fontFamily: "monospace",
@@ -85,5 +155,30 @@ const terminalStyle = {
 };
 
 const lineStyle = {
-    marginBottom: "12px"
+    marginBottom: "14px",
+    color: "#d1d5db",
+    lineHeight: "1.6"
+};
+
+const latestLineStyle = {
+    background: "#111827",
+    borderLeft: "4px solid #22c55e",
+    padding: "14px",
+    borderRadius: "8px",
+    color: "#ffffff"
+};
+
+const latestLabelStyle = {
+    display: "block",
+    color: "#22c55e",
+    fontSize: "12px",
+    fontWeight: "bold",
+    marginBottom: "6px",
+    letterSpacing: "1px"
+};
+
+const actionStyle = {
+    color: "#22c55e",
+    fontWeight: "bold",
+    marginRight: "10px"
 };

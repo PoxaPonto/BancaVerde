@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.DTOs;
+using BancaVerdeAPI.Models;
 using BancaVerdeAPI.Responses;
 
 namespace BancaVerdeAPI.Controllers;
@@ -40,6 +42,54 @@ public class StockMovementsController : ControllerBase
             true,
             "Movimentações encontradas com sucesso.",
             movements
+        ));
+    }
+
+    [HttpPost("sale")]
+    public async Task<IActionResult> RegisterSale(SaleRequestDto request)
+    {
+        var product = await _context.Products.FindAsync(request.ProductId);
+
+        if (product == null)
+        {
+            return NotFound(new ApiResponse<object>(
+                false,
+                "Produto não encontrado."
+            ));
+        }
+
+        if (request.Quantity > product.Stock)
+        {
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Quantidade maior que o estoque disponível."
+            ));
+        }
+
+        var oldStock = product.Stock;
+
+        product.Stock -= request.Quantity;
+
+        var userName =
+            User.FindFirst(ClaimTypes.Name)?.Value ??
+            User.FindFirst("name")?.Value ??
+            User.FindFirst(ClaimTypes.Email)?.Value ??
+            "Desconhecido";
+
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = "SALE",
+            UserName = userName,
+            ProductName = product.Name,
+            OldStock = oldStock,
+            NewStock = product.Stock
+        });
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new ApiResponse<object>(
+            true,
+            "Saída de estoque registrada com sucesso."
         ));
     }
 }

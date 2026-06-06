@@ -28,8 +28,16 @@ public class DashboardController : ControllerBase
 
         var totalStock = await _context.Products.SumAsync(p => p.Stock);
 
-        var lowStockProducts = await _context.Products
-            .CountAsync(p => p.Stock <= 10);
+        var lowStockItems = await _context.Products
+            .Where(p => p.Stock <= 10)
+            .OrderBy(p => p.Stock)
+            .Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.Stock
+            })
+            .ToListAsync();
 
         var totalInventoryValue = await _context.Products
             .SumAsync(p => p.Price * p.Stock);
@@ -79,7 +87,8 @@ public class DashboardController : ControllerBase
             TotalCategories = totalCategories,
             TotalUsers = totalUsers,
             TotalStock = totalStock,
-            LowStockProducts = lowStockProducts,
+            LowStockProducts = lowStockItems.Count,
+            LowStockItems = lowStockItems.Cast<object>().ToList(),
             TotalInventoryValue = totalInventoryValue,
             MostExpensiveProduct = mostExpensiveProduct,
             CheapestProduct = cheapestProduct,

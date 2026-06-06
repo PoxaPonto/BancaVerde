@@ -6,8 +6,10 @@ import Products from "../pages/Products/Products";
 import Categories from "../pages/Categories/Categories";
 import Users from "../pages/Users/Users";
 import Movements from "../pages/Movements/Movements";
+import Sales from "../pages/Sales/Sales";
 import Layout from "../components/Layout/Layout";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export default function AppRoutes() {
     return (
@@ -24,9 +26,26 @@ export default function AppRoutes() {
                 >
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/products" element={<Products />} />
+                    <Route path="/sales" element={<Sales />} />
                     <Route path="/categories" element={<Categories />} />
-                    <Route path="/users" element={<Users />} />
-                    <Route path="/movements" element={<Movements />} />
+
+                    <Route
+                        path="/users"
+                        element={
+                            <AdminRoute>
+                                <Users />
+                            </AdminRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/movements"
+                        element={
+                            <AdminRoute>
+                                <Movements />
+                            </AdminRoute>
+                        }
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>

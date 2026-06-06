@@ -31,13 +31,10 @@ export default function Dashboard() {
         loadDashboard();
     }, []);
 
-    if (loading) {
-        return <h2>Carregando dashboard...</h2>;
-    }
+    if (loading) return <h2>Carregando dashboard...</h2>;
+    if (!dashboard) return <h2>Nenhum dado encontrado.</h2>;
 
-    if (!dashboard) {
-        return <h2>Nenhum dado encontrado.</h2>;
-    }
+    const lowStockItems = dashboard.lowStockItems || [];
 
     return (
         <div>
@@ -54,65 +51,49 @@ export default function Dashboard() {
                 <Card title="Usuários" value={dashboard.totalUsers} icon="👥" />
                 <Card title="Estoque Total" value={dashboard.totalStock} icon="📈" />
                 <Card title="Estoque Baixo" value={dashboard.lowStockProducts} icon="⚠️" warning />
-                <Card title="Valor em Estoque" value={`R$ ${dashboard.totalInventoryValue}`} icon="💰" />
+                <Card
+                    title="Valor em Estoque"
+                    value={formatCurrency(dashboard.totalInventoryValue)}
+                    icon="💰"
+                    compact
+                />
             </div>
 
+            {lowStockItems.length > 0 && (
+                <div style={lowStockBoxStyle}>
+                    <h2 style={{ marginBottom: "14px", color: "#fbbf24" }}>
+                        Produtos com Estoque Baixo
+                    </h2>
+
+                    <p style={{ color: "#9ca3af", marginBottom: "14px" }}>
+                        Itens com estoque igual ou menor que 10 unidades.
+                    </p>
+
+                    <div style={lowStockListStyle}>
+                        {lowStockItems.map((item) => (
+                            <div key={item.id} style={lowStockItemStyle}>
+                                <strong>{item.name}</strong>
+                                <span>{item.stock} unidades</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             <div style={chartsGridStyle}>
-                <div style={chartBoxStyle}>
-                    <h2 style={{ marginBottom: "18px" }}>
-                        Produtos por Categoria
-                    </h2>
+                <ChartBox
+                    title="Produtos por Categoria"
+                    dataKey="productCount"
+                    fill="#22c55e"
+                    data={dashboard.productsByCategory}
+                />
 
-                    <div style={{ width: "100%", height: 300 }}>
-                        <ResponsiveContainer>
-                            <BarChart data={dashboard.productsByCategory}>
-                                <XAxis dataKey="categoryName" stroke="#9ca3af" />
-                                <YAxis stroke="#9ca3af" />
-                                <Tooltip
-                                    contentStyle={{
-                                        background: "#111827",
-                                        border: "1px solid #374151",
-                                        color: "#fff"
-                                    }}
-                                    labelStyle={{ color: "#fff" }}
-                                />
-                                <Bar
-                                    dataKey="productCount"
-                                    fill="#22c55e"
-                                    radius={[8, 8, 0, 0]}
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-
-                <div style={chartBoxStyle}>
-                    <h2 style={{ marginBottom: "18px" }}>
-                        Estoque por Categoria
-                    </h2>
-
-                    <div style={{ width: "100%", height: 300 }}>
-                        <ResponsiveContainer>
-                            <BarChart data={dashboard.productsByCategory}>
-                                <XAxis dataKey="categoryName" stroke="#9ca3af" />
-                                <YAxis stroke="#9ca3af" />
-                                <Tooltip
-                                    contentStyle={{
-                                        background: "#111827",
-                                        border: "1px solid #374151",
-                                        color: "#fff"
-                                    }}
-                                    labelStyle={{ color: "#fff" }}
-                                />
-                                <Bar
-                                    dataKey="totalStock"
-                                    fill="#f59e0b"
-                                    radius={[8, 8, 0, 0]}
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
+                <ChartBox
+                    title="Estoque por Categoria"
+                    dataKey="totalStock"
+                    fill="#f59e0b"
+                    data={dashboard.productsByCategory}
+                />
             </div>
 
             <div style={infoGridStyle}>
@@ -120,7 +101,7 @@ export default function Dashboard() {
                     title="Produto mais caro"
                     value={
                         dashboard.mostExpensiveProduct
-                            ? `${dashboard.mostExpensiveProduct.name} - R$ ${dashboard.mostExpensiveProduct.price}`
+                            ? `${dashboard.mostExpensiveProduct.name} - ${formatCurrency(dashboard.mostExpensiveProduct.price)}`
                             : "Não encontrado"
                     }
                 />
@@ -129,7 +110,7 @@ export default function Dashboard() {
                     title="Produto mais barato"
                     value={
                         dashboard.cheapestProduct
-                            ? `${dashboard.cheapestProduct.name} - R$ ${dashboard.cheapestProduct.price}`
+                            ? `${dashboard.cheapestProduct.name} - ${formatCurrency(dashboard.cheapestProduct.price)}`
                             : "Não encontrado"
                     }
                 />
@@ -147,7 +128,44 @@ export default function Dashboard() {
     );
 }
 
-function Card({ title, value, icon, warning }) {
+function ChartBox({ title, data, dataKey, fill }) {
+    return (
+        <div style={chartBoxStyle}>
+            <h2 style={{ marginBottom: "18px" }}>{title}</h2>
+
+            <div style={{ width: "100%", height: 300 }}>
+                <ResponsiveContainer>
+                    <BarChart data={data}>
+                        <XAxis dataKey="categoryName" stroke="#9ca3af" />
+                        <YAxis stroke="#9ca3af" />
+                        <Tooltip
+                            contentStyle={{
+                                background: "#111827",
+                                border: "1px solid #374151",
+                                color: "#fff"
+                            }}
+                            labelStyle={{ color: "#fff" }}
+                        />
+                        <Bar
+                            dataKey={dataKey}
+                            fill={fill}
+                            radius={[8, 8, 0, 0]}
+                        />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
+    );
+}
+
+function formatCurrency(value) {
+    return Number(value || 0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+function Card({ title, value, icon, warning, compact }) {
     return (
         <div
             style={{
@@ -157,11 +175,12 @@ function Card({ title, value, icon, warning }) {
                     : "1px solid #1f2937"
             }}
         >
-            <div>
+            <div style={{ minWidth: 0 }}>
                 <p style={cardTitleStyle}>{title}</p>
                 <h2
                     style={{
                         ...cardValueStyle,
+                        fontSize: compact ? "24px" : "28px",
                         color: warning ? "#fbbf24" : "#ffffff"
                     }}
                 >
@@ -192,7 +211,7 @@ function InfoBox({ title, value }) {
 
 const cardsContainerStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "18px",
     marginBottom: "26px"
 };
@@ -204,6 +223,7 @@ const cardStyle = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: "14px",
     boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
 };
 
@@ -214,13 +234,40 @@ const cardTitleStyle = {
 
 const cardValueStyle = {
     marginTop: "10px",
-    fontSize: "28px"
+    lineHeight: "1.1",
+    whiteSpace: "nowrap"
 };
 
 const cardIconStyle = {
-    fontSize: "34px",
+    fontSize: "30px",
     padding: "12px",
-    borderRadius: "12px"
+    borderRadius: "12px",
+    flexShrink: 0
+};
+
+const lowStockBoxStyle = {
+    background: "#111827",
+    border: "1px solid #f59e0b",
+    borderRadius: "14px",
+    padding: "22px",
+    marginBottom: "26px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
+};
+
+const lowStockListStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "12px"
+};
+
+const lowStockItemStyle = {
+    background: "#1f2937",
+    borderRadius: "10px",
+    padding: "12px",
+    color: "#fff",
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "12px"
 };
 
 const chartsGridStyle = {
