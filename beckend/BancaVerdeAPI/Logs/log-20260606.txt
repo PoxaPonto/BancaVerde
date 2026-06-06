@@ -525,3 +525,713 @@ ORDER BY [s].[CreatedAt] DESC
 2026-06-06 13:30:56.778 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI)'
 2026-06-06 13:30:56.778 -03:00 [INF] HTTP GET /api/StockMovements responded 200 in 14.9246 ms
 2026-06-06 13:30:56.780 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/StockMovements - 200 null application/json; charset=utf-8 19.4414ms
+2026-06-06 13:56:09.707 -03:00 [INF] Application is shutting down...
+2026-06-06 13:56:26.933 -03:00 [INF] User profile is available. Using 'C:\Users\Poxa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-06 13:56:27.059 -03:00 [INF] Now listening on: http://localhost:5092
+2026-06-06 13:56:27.062 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 13:56:27.063 -03:00 [INF] Hosting environment: Development
+2026-06-06 13:56:27.065 -03:00 [INF] Content root path: C:\Users\Poxa\Desktop\Banca verde\beckend\BancaVerdeAPI
+2026-06-06 13:59:44.929 -03:00 [INF] Application is shutting down...
+2026-06-06 14:06:01.613 -03:00 [INF] User profile is available. Using 'C:\Users\Poxa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-06 14:06:01.741 -03:00 [INF] Now listening on: http://localhost:5092
+2026-06-06 14:06:01.743 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 14:06:01.745 -03:00 [INF] Hosting environment: Development
+2026-06-06 14:06:01.747 -03:00 [INF] Content root path: C:\Users\Poxa\Desktop\Banca verde\beckend\BancaVerdeAPI
+2026-06-06 14:06:26.074 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/StockMovements - null null
+2026-06-06 14:06:26.073 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/StockMovements - null null
+2026-06-06 14:06:26.125 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:26.125 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:26.130 -03:00 [INF] HTTP OPTIONS /api/StockMovements responded 204 in 23.0373 ms
+2026-06-06 14:06:26.130 -03:00 [INF] HTTP OPTIONS /api/StockMovements responded 204 in 23.0460 ms
+2026-06-06 14:06:26.139 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/StockMovements - 204 null null 66.132ms
+2026-06-06 14:06:26.139 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/StockMovements - 204 null null 66.132ms
+2026-06-06 14:06:26.147 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/StockMovements - null null
+2026-06-06 14:06:26.158 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:26.243 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI)'
+2026-06-06 14:06:26.261 -03:00 [INF] Route matched with {action = "GetMovements", controller = "StockMovements"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMovements() on controller BancaVerdeAPI.Controllers.StockMovementsController (BancaVerdeAPI).
+2026-06-06 14:06:28.168 -03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Action], [s].[UserName], [s].[ProductName], [s].[OldStock], [s].[NewStock], [s].[CreatedAt]
+FROM [StockMovements] AS [s]
+ORDER BY [s].[CreatedAt] DESC
+2026-06-06 14:06:28.206 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.StockMovementResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:28.244 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/StockMovements - null null
+2026-06-06 14:06:28.244 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI) in 1977.6081ms
+2026-06-06 14:06:28.248 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:28.250 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI)'
+2026-06-06 14:06:28.253 -03:00 [INF] HTTP GET /api/StockMovements responded 200 in 2100.6621 ms
+2026-06-06 14:06:28.253 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI)'
+2026-06-06 14:06:28.256 -03:00 [INF] Route matched with {action = "GetMovements", controller = "StockMovements"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMovements() on controller BancaVerdeAPI.Controllers.StockMovementsController (BancaVerdeAPI).
+2026-06-06 14:06:28.263 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/StockMovements - 200 null application/json; charset=utf-8 2115.2208ms
+2026-06-06 14:06:28.291 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Action], [s].[UserName], [s].[ProductName], [s].[OldStock], [s].[NewStock], [s].[CreatedAt]
+FROM [StockMovements] AS [s]
+ORDER BY [s].[CreatedAt] DESC
+2026-06-06 14:06:28.295 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.StockMovementResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:28.298 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI) in 38.8705ms
+2026-06-06 14:06:28.301 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.StockMovementsController.GetMovements (BancaVerdeAPI)'
+2026-06-06 14:06:28.303 -03:00 [INF] HTTP GET /api/StockMovements responded 200 in 54.7398 ms
+2026-06-06 14:06:28.306 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/StockMovements - 200 null application/json; charset=utf-8 61.9802ms
+2026-06-06 14:06:29.427 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - null null
+2026-06-06 14:06:29.427 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - null null
+2026-06-06 14:06:29.431 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:29.434 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:29.436 -03:00 [INF] HTTP OPTIONS /api/Dashboard responded 204 in 4.6693 ms
+2026-06-06 14:06:29.437 -03:00 [INF] HTTP OPTIONS /api/Dashboard responded 204 in 2.3821 ms
+2026-06-06 14:06:29.439 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - 204 null null 12.1417ms
+2026-06-06 14:06:29.442 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - 204 null null 14.5895ms
+2026-06-06 14:06:29.446 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Dashboard - null null
+2026-06-06 14:06:29.452 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:29.458 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 14:06:29.465 -03:00 [INF] Route matched with {action = "GetDashboard", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDashboard() on controller BancaVerdeAPI.Controllers.DashboardController (BancaVerdeAPI).
+2026-06-06 14:06:29.574 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.583 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+2026-06-06 14:06:29.592 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2026-06-06 14:06:29.602 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Stock]), 0)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.622 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Stock] <= 10
+ORDER BY [p].[Stock]
+2026-06-06 14:06:29.638 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Price] * CAST([p].[Stock] AS decimal(18,2))), 0.0)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.653 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price] DESC
+2026-06-06 14:06:29.671 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price]
+2026-06-06 14:06:29.711 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [ProductCount]
+FROM [Categories] AS [c]
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) DESC
+2026-06-06 14:06:29.725 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Name] AS [CategoryName], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) AS [ProductCount], (
+    SELECT COALESCE(SUM([p0].[Stock]), 0)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [TotalStock]
+FROM [Categories] AS [c]
+2026-06-06 14:06:29.729 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[BancaVerdeAPI.DTOs.DashboardResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 14:06:29.747 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI) in 279.0745ms
+2026-06-06 14:06:29.748 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Dashboard - null null
+2026-06-06 14:06:29.749 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 14:06:29.752 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:29.753 -03:00 [INF] HTTP GET /api/Dashboard responded 200 in 300.7629 ms
+2026-06-06 14:06:29.755 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 14:06:29.756 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Dashboard - 200 null application/json; charset=utf-8 310.2021ms
+2026-06-06 14:06:29.757 -03:00 [INF] Route matched with {action = "GetDashboard", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDashboard() on controller BancaVerdeAPI.Controllers.DashboardController (BancaVerdeAPI).
+2026-06-06 14:06:29.764 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.768 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+2026-06-06 14:06:29.772 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2026-06-06 14:06:29.775 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Stock]), 0)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.781 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Stock] <= 10
+ORDER BY [p].[Stock]
+2026-06-06 14:06:29.785 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Price] * CAST([p].[Stock] AS decimal(18,2))), 0.0)
+FROM [Products] AS [p]
+2026-06-06 14:06:29.790 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price] DESC
+2026-06-06 14:06:29.794 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price]
+2026-06-06 14:06:29.798 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [ProductCount]
+FROM [Categories] AS [c]
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) DESC
+2026-06-06 14:06:29.803 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Name] AS [CategoryName], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) AS [ProductCount], (
+    SELECT COALESCE(SUM([p0].[Stock]), 0)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [TotalStock]
+FROM [Categories] AS [c]
+2026-06-06 14:06:29.806 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[BancaVerdeAPI.DTOs.DashboardResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 14:06:29.808 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI) in 45.4556ms
+2026-06-06 14:06:29.810 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 14:06:29.811 -03:00 [INF] HTTP GET /api/Dashboard responded 200 in 58.8337 ms
+2026-06-06 14:06:29.813 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Dashboard - 200 null application/json; charset=utf-8 65.2612ms
+2026-06-06 14:06:34.157 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:06:34.157 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:06:34.162 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:34.167 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:34.167 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 6.0783 ms
+2026-06-06 14:06:34.172 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 5.0198 ms
+2026-06-06 14:06:34.174 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 16.9977ms
+2026-06-06 14:06:34.177 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 19.9261ms
+2026-06-06 14:06:34.183 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:06:34.194 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:34.195 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:34.205 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:06:34.262 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:06:34.266 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:34.272 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 64.912ms
+2026-06-06 14:06:34.274 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:06:34.274 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:34.278 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:34.279 -03:00 [INF] HTTP GET /api/Products responded 200 in 85.2552 ms
+2026-06-06 14:06:34.283 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 99.5055ms
+2026-06-06 14:06:34.283 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:34.290 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:06:34.295 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:06:34.299 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:34.301 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 8.4ms
+2026-06-06 14:06:34.306 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:34.309 -03:00 [INF] HTTP GET /api/Products responded 200 in 30.5488 ms
+2026-06-06 14:06:34.313 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 39.5734ms
+2026-06-06 14:06:38.095 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - null null
+2026-06-06 14:06:38.099 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:38.100 -03:00 [INF] HTTP OPTIONS /api/Categories responded 204 in 1.5736 ms
+2026-06-06 14:06:38.103 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - 204 null null 8.4461ms
+2026-06-06 14:06:38.108 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Categories - null null
+2026-06-06 14:06:38.112 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:38.114 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 14:06:38.122 -03:00 [INF] Route matched with {action = "GetCategories", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCategories() on controller BancaVerdeAPI.Controllers.CategoriesController (BancaVerdeAPI).
+2026-06-06 14:06:38.132 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]
+2026-06-06 14:06:38.136 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.CategoryResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:38.140 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI) in 15.4994ms
+2026-06-06 14:06:38.142 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 14:06:38.143 -03:00 [INF] HTTP GET /api/Categories responded 200 in 31.1221 ms
+2026-06-06 14:06:38.146 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Categories - 200 null application/json; charset=utf-8 37.7894ms
+2026-06-06 14:06:42.489 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products/1008 - null null
+2026-06-06 14:06:42.494 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:42.494 -03:00 [INF] HTTP OPTIONS /api/Products/1008 responded 204 in 0.8386 ms
+2026-06-06 14:06:42.497 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products/1008 - 204 null null 7.6566ms
+2026-06-06 14:06:42.501 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5092/api/Products/1008 - application/json 53
+2026-06-06 14:06:42.505 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:42.506 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI)'
+2026-06-06 14:06:42.518 -03:00 [INF] Route matched with {action = "UpdateProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, BancaVerdeAPI.DTOs.UpdateProductDto) on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:06:42.596 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @p
+2026-06-06 14:06:42.653 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@updatedProduct_CategoryId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Id] = @updatedProduct_CategoryId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-06 14:06:42.657 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:42.660 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI) in 139.2894ms
+2026-06-06 14:06:42.662 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI)'
+2026-06-06 14:06:42.663 -03:00 [INF] HTTP PUT /api/Products/1008 responded 400 in 158.0919 ms
+2026-06-06 14:06:42.665 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5092/api/Products/1008 - 400 null application/json; charset=utf-8 164.2696ms
+2026-06-06 14:06:47.351 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5092/api/Products/1008 - application/json 53
+2026-06-06 14:06:47.354 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:47.355 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI)'
+2026-06-06 14:06:47.356 -03:00 [INF] Route matched with {action = "UpdateProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, BancaVerdeAPI.DTOs.UpdateProductDto) on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:06:47.361 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @p
+2026-06-06 14:06:47.366 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@updatedProduct_CategoryId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Id] = @updatedProduct_CategoryId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-06 14:06:47.439 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Products] SET [Stock] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-06-06 14:06:47.503 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [StockMovements] ([Action], [CreatedAt], [NewStock], [OldStock], [ProductName], [UserName])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-06-06 14:06:47.519 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:47.521 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI) in 162.7873ms
+2026-06-06 14:06:47.523 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.UpdateProduct (BancaVerdeAPI)'
+2026-06-06 14:06:47.524 -03:00 [INF] HTTP PUT /api/Products/1008 responded 200 in 169.9691 ms
+2026-06-06 14:06:47.526 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5092/api/Products/1008 - 200 null application/json; charset=utf-8 175.7961ms
+2026-06-06 14:06:47.534 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:06:47.538 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:47.539 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 1.0988 ms
+2026-06-06 14:06:47.541 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 6.8345ms
+2026-06-06 14:06:47.545 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:06:47.549 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:06:47.550 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:47.552 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:06:47.556 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:06:47.559 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:06:47.561 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 7.2333ms
+2026-06-06 14:06:47.563 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:06:47.564 -03:00 [INF] HTTP GET /api/Products responded 200 in 15.2359 ms
+2026-06-06 14:06:47.566 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 21.1247ms
+2026-06-06 14:07:29.000 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - null null
+2026-06-06 14:07:29.003 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:07:29.005 -03:00 [INF] HTTP OPTIONS /api/Categories responded 204 in 1.4609 ms
+2026-06-06 14:07:29.008 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - 204 null null 7.3435ms
+2026-06-06 14:07:29.012 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Categories - null null
+2026-06-06 14:07:29.015 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:07:29.017 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 14:07:29.019 -03:00 [INF] Route matched with {action = "GetCategories", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCategories() on controller BancaVerdeAPI.Controllers.CategoriesController (BancaVerdeAPI).
+2026-06-06 14:07:29.023 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]
+2026-06-06 14:07:29.026 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.CategoryResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:07:29.029 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI) in 7.7313ms
+2026-06-06 14:07:29.031 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 14:07:29.032 -03:00 [INF] HTTP GET /api/Categories responded 200 in 17.5681 ms
+2026-06-06 14:07:29.035 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Categories - 200 null application/json; charset=utf-8 23.4143ms
+2026-06-06 14:07:40.175 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:07:40.178 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:07:40.179 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 1.1467 ms
+2026-06-06 14:07:40.181 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 6.474ms
+2026-06-06 14:07:40.185 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5092/api/Products - application/json 51
+2026-06-06 14:07:40.188 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:07:40.190 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.CreateProduct (BancaVerdeAPI)'
+2026-06-06 14:07:40.198 -03:00 [INF] Route matched with {action = "CreateProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateProduct(BancaVerdeAPI.DTOs.CreateProductDto) on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:07:40.211 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@productDto_CategoryId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Id] = @productDto_CategoryId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-06 14:07:40.225 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 100), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Stock])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2026-06-06 14:07:40.234 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [StockMovements] ([Action], [CreatedAt], [NewStock], [OldStock], [ProductName], [UserName])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-06-06 14:07:40.238 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 14:07:40.256 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.CreateProduct (BancaVerdeAPI) in 54.9613ms
+2026-06-06 14:07:40.257 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.CreateProduct (BancaVerdeAPI)'
+2026-06-06 14:07:40.258 -03:00 [INF] HTTP POST /api/Products responded 201 in 70.1255 ms
+2026-06-06 14:07:40.260 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5092/api/Products - 201 null application/json; charset=utf-8 75.0622ms
+2026-06-06 14:07:40.270 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:07:40.273 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:07:40.275 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:07:40.276 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:07:40.281 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:07:40.284 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:07:40.286 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 6.7749ms
+2026-06-06 14:07:40.287 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:07:40.289 -03:00 [INF] HTTP GET /api/Products responded 200 in 15.9126 ms
+2026-06-06 14:07:40.292 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 21.3991ms
+2026-06-06 14:15:00.639 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:15:00.639 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:15:00.642 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:15:00.645 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:15:00.646 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 4.0186 ms
+2026-06-06 14:15:00.646 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 1.4336 ms
+2026-06-06 14:15:00.648 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 9.3524ms
+2026-06-06 14:15:00.650 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 11.0666ms
+2026-06-06 14:15:00.653 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:15:00.658 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:15:00.659 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:15:00.660 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:15:00.724 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:15:00.727 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:15:00.728 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 67.4991ms
+2026-06-06 14:15:00.729 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:15:00.730 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:15:00.732 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:15:00.733 -03:00 [INF] HTTP GET /api/Products responded 200 in 75.1651 ms
+2026-06-06 14:15:00.733 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:15:00.735 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 81.5416ms
+2026-06-06 14:15:00.736 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:15:00.742 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:15:00.744 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:15:00.745 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 4.9727ms
+2026-06-06 14:15:00.747 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:15:00.748 -03:00 [INF] HTTP GET /api/Products responded 200 in 15.7853 ms
+2026-06-06 14:15:00.750 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 20.1592ms
+2026-06-06 14:30:57.098 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 14:30:57.103 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:30:57.104 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 1.0584 ms
+2026-06-06 14:30:57.106 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 7.0863ms
+2026-06-06 14:30:57.109 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 14:30:57.112 -03:00 [INF] CORS policy execution successful.
+2026-06-06 14:30:57.114 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:30:57.115 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 14:30:58.046 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 14:30:58.049 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 14:30:58.050 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 933.7289ms
+2026-06-06 14:30:58.052 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 14:30:58.054 -03:00 [INF] HTTP GET /api/Products responded 200 in 941.7933 ms
+2026-06-06 14:30:58.057 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 947.2115ms
+2026-06-06 18:43:15.436 -03:00 [INF] User profile is available. Using 'C:\Users\Poxa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-06 18:43:15.621 -03:00 [INF] Now listening on: http://localhost:5092
+2026-06-06 18:43:15.624 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 18:43:15.626 -03:00 [INF] Hosting environment: Development
+2026-06-06 18:43:15.627 -03:00 [INF] Content root path: C:\Users\Poxa\Desktop\Banca verde\beckend\BancaVerdeAPI
+2026-06-06 18:43:15.820 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger/index.html - null null
+2026-06-06 18:43:15.962 -03:00 [INF] HTTP GET /swagger/index.html responded 200 in 86.3217 ms
+2026-06-06 18:43:15.970 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger/index.html - 200 null text/html;charset=utf-8 151.9391ms
+2026-06-06 18:43:15.973 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui-bundle.js - null null
+2026-06-06 18:43:15.973 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger-ui/custom.css - null null
+2026-06-06 18:43:15.980 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui.css - null null
+2026-06-06 18:43:16.016 -03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-06 18:43:16.020 -03:00 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 24.9684 ms
+2026-06-06 18:43:16.022 -03:00 [INF] Sending file. Request path: '/swagger-ui/custom.css'. Physical path: 'C:\Users\Poxa\Desktop\Banca verde\beckend\BancaVerdeAPI\wwwroot\swagger-ui\custom.css'
+2026-06-06 18:43:16.024 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui.css - 200 152034 text/css 43.0617ms
+2026-06-06 18:43:16.024 -03:00 [INF] HTTP GET /swagger-ui/custom.css responded 200 in 39.7802 ms
+2026-06-06 18:43:16.029 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-06 18:43:16.031 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger-ui/custom.css - 200 2097 text/css 58.526ms
+2026-06-06 18:43:16.034 -03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-06 18:43:16.037 -03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-06 18:43:16.041 -03:00 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 60.1392 ms
+2026-06-06 18:43:16.043 -03:00 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 9.0594 ms
+2026-06-06 18:43:16.045 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 72.7869ms
+2026-06-06 18:43:16.048 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 18.1802ms
+2026-06-06 18:43:16.204 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/swagger/v1/swagger.json - null null
+2026-06-06 18:43:16.313 -03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 105.9884 ms
+2026-06-06 18:43:16.315 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 111.4496ms
+2026-06-06 18:43:31.765 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5092/api/Auth/login - application/json 61
+2026-06-06 18:43:31.774 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:43:31.831 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI)'
+2026-06-06 18:43:31.863 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BancaVerdeAPI.Models.LoginRequest) on controller BancaVerdeAPI.Controllers.AuthController (BancaVerdeAPI).
+2026-06-06 18:43:34.651 -03:00 [INF] Executed DbCommand (45ms) [Parameters=[@loginData_Email='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @loginData_Email
+2026-06-06 18:43:35.055 -03:00 [INF] Login realizado com sucesso. Usuário: 2, Nome: Teste BCrypt, Email: teste@bancaverde.com, Role: Admin
+2026-06-06 18:43:35.062 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:43:35.083 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI) in 3212.8196ms
+2026-06-06 18:43:35.085 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI)'
+2026-06-06 18:43:35.087 -03:00 [INF] HTTP POST /api/Auth/login responded 200 in 3315.7603 ms
+2026-06-06 18:43:35.096 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5092/api/Auth/login - 200 null application/json; charset=utf-8 3330.9926ms
+2026-06-06 18:43:59.735 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Auth/login - null null
+2026-06-06 18:43:59.741 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:43:59.743 -03:00 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 2.8850 ms
+2026-06-06 18:43:59.746 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Auth/login - 204 null null 10.9774ms
+2026-06-06 18:43:59.750 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5092/api/Auth/login - application/json 52
+2026-06-06 18:43:59.753 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:43:59.755 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI)'
+2026-06-06 18:43:59.757 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BancaVerdeAPI.Models.LoginRequest) on controller BancaVerdeAPI.Controllers.AuthController (BancaVerdeAPI).
+2026-06-06 18:43:59.798 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@loginData_Email='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @loginData_Email
+2026-06-06 18:44:00.111 -03:00 [INF] Login realizado com sucesso. Usuário: 2, Nome: Teste BCrypt, Email: teste@bancaverde.com, Role: Admin
+2026-06-06 18:44:00.115 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:00.117 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI) in 357.6368ms
+2026-06-06 18:44:00.118 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.AuthController.Login (BancaVerdeAPI)'
+2026-06-06 18:44:00.120 -03:00 [INF] HTTP POST /api/Auth/login responded 200 in 367.1293 ms
+2026-06-06 18:44:00.122 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5092/api/Auth/login - 200 null application/json; charset=utf-8 372.4883ms
+2026-06-06 18:44:00.183 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - null null
+2026-06-06 18:44:00.184 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - null null
+2026-06-06 18:44:00.187 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:00.190 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:00.191 -03:00 [INF] HTTP OPTIONS /api/Dashboard responded 204 in 4.5833 ms
+2026-06-06 18:44:00.192 -03:00 [INF] HTTP OPTIONS /api/Dashboard responded 204 in 2.0048 ms
+2026-06-06 18:44:00.194 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - 204 null null 11.6086ms
+2026-06-06 18:44:00.196 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Dashboard - 204 null null 11.8765ms
+2026-06-06 18:44:00.199 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Dashboard - null null
+2026-06-06 18:44:00.204 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:00.241 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 18:44:00.250 -03:00 [INF] Route matched with {action = "GetDashboard", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDashboard() on controller BancaVerdeAPI.Controllers.DashboardController (BancaVerdeAPI).
+2026-06-06 18:44:00.358 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.369 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+2026-06-06 18:44:00.376 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2026-06-06 18:44:00.386 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Stock]), 0)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.406 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Stock] <= 10
+ORDER BY [p].[Stock]
+2026-06-06 18:44:00.424 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Price] * CAST([p].[Stock] AS decimal(18,2))), 0.0)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.436 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price] DESC
+2026-06-06 18:44:00.445 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price]
+2026-06-06 18:44:00.486 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [ProductCount]
+FROM [Categories] AS [c]
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) DESC
+2026-06-06 18:44:00.506 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Name] AS [CategoryName], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) AS [ProductCount], (
+    SELECT COALESCE(SUM([p0].[Stock]), 0)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [TotalStock]
+FROM [Categories] AS [c]
+2026-06-06 18:44:00.510 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[BancaVerdeAPI.DTOs.DashboardResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 18:44:00.529 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI) in 277.0887ms
+2026-06-06 18:44:00.530 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Dashboard - null null
+2026-06-06 18:44:00.531 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 18:44:00.534 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:00.534 -03:00 [INF] HTTP GET /api/Dashboard responded 200 in 330.0801 ms
+2026-06-06 18:44:00.537 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Dashboard - 200 null application/json; charset=utf-8 338.1512ms
+2026-06-06 18:44:00.538 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 18:44:00.542 -03:00 [INF] Route matched with {action = "GetDashboard", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDashboard() on controller BancaVerdeAPI.Controllers.DashboardController (BancaVerdeAPI).
+2026-06-06 18:44:00.545 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.548 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+2026-06-06 18:44:00.551 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Users] AS [u]
+2026-06-06 18:44:00.554 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Stock]), 0)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.559 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Stock]
+FROM [Products] AS [p]
+WHERE [p].[Stock] <= 10
+ORDER BY [p].[Stock]
+2026-06-06 18:44:00.563 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([p].[Price] * CAST([p].[Stock] AS decimal(18,2))), 0.0)
+FROM [Products] AS [p]
+2026-06-06 18:44:00.567 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price] DESC
+2026-06-06 18:44:00.571 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+ORDER BY [p].[Price]
+2026-06-06 18:44:00.576 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [ProductCount]
+FROM [Categories] AS [c]
+ORDER BY (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) DESC
+2026-06-06 18:44:00.582 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Name] AS [CategoryName], (
+    SELECT COUNT(*)
+    FROM [Products] AS [p]
+    WHERE [c].[Id] = [p].[CategoryId]) AS [ProductCount], (
+    SELECT COALESCE(SUM([p0].[Stock]), 0)
+    FROM [Products] AS [p0]
+    WHERE [c].[Id] = [p0].[CategoryId]) AS [TotalStock]
+FROM [Categories] AS [c]
+2026-06-06 18:44:00.585 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[BancaVerdeAPI.DTOs.DashboardResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 18:44:00.587 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI) in 43.1633ms
+2026-06-06 18:44:00.589 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.DashboardController.GetDashboard (BancaVerdeAPI)'
+2026-06-06 18:44:00.591 -03:00 [INF] HTTP GET /api/Dashboard responded 200 in 57.5570 ms
+2026-06-06 18:44:00.594 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Dashboard - 200 null application/json; charset=utf-8 63.6652ms
+2026-06-06 18:44:03.569 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 18:44:03.570 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 18:44:03.574 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:03.577 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:03.578 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 3.6183 ms
+2026-06-06 18:44:03.579 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 2.0401 ms
+2026-06-06 18:44:03.581 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 11.948ms
+2026-06-06 18:44:03.583 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 12.7291ms
+2026-06-06 18:44:03.587 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:03.592 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:03.596 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:03.604 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:03.663 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:03.666 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:03.671 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 64.6321ms
+2026-06-06 18:44:03.672 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:03.672 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:03.676 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:03.676 -03:00 [INF] HTTP GET /api/Products responded 200 in 84.1677 ms
+2026-06-06 18:44:03.678 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:03.680 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 92.8756ms
+2026-06-06 18:44:03.680 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:03.688 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:03.691 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:03.693 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 7.6617ms
+2026-06-06 18:44:03.694 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:03.695 -03:00 [INF] HTTP GET /api/Products responded 200 in 19.9841 ms
+2026-06-06 18:44:03.697 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 25.2955ms
+2026-06-06 18:44:05.090 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:05.093 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:05.095 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:05.097 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:05.101 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:05.104 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:05.106 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 7.1094ms
+2026-06-06 18:44:05.107 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:05.107 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:05.110 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:05.111 -03:00 [INF] HTTP GET /api/Products responded 200 in 17.7737 ms
+2026-06-06 18:44:05.112 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:05.114 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 23.6276ms
+2026-06-06 18:44:05.115 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:05.121 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:05.123 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:05.124 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 4.2589ms
+2026-06-06 18:44:05.126 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:05.126 -03:00 [INF] HTTP GET /api/Products responded 200 in 16.2034 ms
+2026-06-06 18:44:05.128 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 20.7886ms
+2026-06-06 18:44:07.215 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - null null
+2026-06-06 18:44:07.216 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - null null
+2026-06-06 18:44:07.218 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:07.221 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:07.222 -03:00 [INF] HTTP OPTIONS /api/Categories responded 204 in 4.3492 ms
+2026-06-06 18:44:07.223 -03:00 [INF] HTTP OPTIONS /api/Categories responded 204 in 2.2350 ms
+2026-06-06 18:44:07.226 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - 204 null null 10.2271ms
+2026-06-06 18:44:07.228 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Categories - 204 null null 12.085ms
+2026-06-06 18:44:07.232 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Categories - null null
+2026-06-06 18:44:07.239 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:07.241 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 18:44:07.247 -03:00 [INF] Route matched with {action = "GetCategories", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCategories() on controller BancaVerdeAPI.Controllers.CategoriesController (BancaVerdeAPI).
+2026-06-06 18:44:07.256 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]
+2026-06-06 18:44:07.259 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.CategoryResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:07.263 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI) in 12.7798ms
+2026-06-06 18:44:07.264 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Categories - null null
+2026-06-06 18:44:07.264 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 18:44:07.267 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:07.268 -03:00 [INF] HTTP GET /api/Categories responded 200 in 28.4946 ms
+2026-06-06 18:44:07.269 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 18:44:07.270 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Categories - 200 null application/json; charset=utf-8 38.1938ms
+2026-06-06 18:44:07.271 -03:00 [INF] Route matched with {action = "GetCategories", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCategories() on controller BancaVerdeAPI.Controllers.CategoriesController (BancaVerdeAPI).
+2026-06-06 18:44:07.277 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]
+2026-06-06 18:44:07.280 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.CategoryResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:07.281 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI) in 5.7243ms
+2026-06-06 18:44:07.283 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.CategoriesController.GetCategories (BancaVerdeAPI)'
+2026-06-06 18:44:07.284 -03:00 [INF] HTTP GET /api/Categories responded 200 in 17.5048 ms
+2026-06-06 18:44:07.286 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Categories - 200 null application/json; charset=utf-8 22.5917ms
+2026-06-06 18:44:16.346 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 18:44:16.346 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5092/api/Products - null null
+2026-06-06 18:44:16.349 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:16.351 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:16.351 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 2.4984 ms
+2026-06-06 18:44:16.352 -03:00 [INF] HTTP OPTIONS /api/Products responded 204 in 1.1620 ms
+2026-06-06 18:44:16.353 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 7.0128ms
+2026-06-06 18:44:16.355 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5092/api/Products - 204 null null 8.3504ms
+2026-06-06 18:44:16.357 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:16.361 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:16.362 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:16.363 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:16.366 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:16.368 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:16.369 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 4.4455ms
+2026-06-06 18:44:16.370 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5092/api/Products - null null
+2026-06-06 18:44:16.370 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:16.372 -03:00 [INF] CORS policy execution successful.
+2026-06-06 18:44:16.373 -03:00 [INF] HTTP GET /api/Products responded 200 in 11.7591 ms
+2026-06-06 18:44:16.374 -03:00 [INF] Executing endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:16.375 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 17.9786ms
+2026-06-06 18:44:16.376 -03:00 [INF] Route matched with {action = "GetProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProducts() on controller BancaVerdeAPI.Controllers.ProductsController (BancaVerdeAPI).
+2026-06-06 18:44:16.381 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price], [p].[Stock], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-06-06 18:44:16.383 -03:00 [INF] Executing OkObjectResult, writing value of type 'BancaVerdeAPI.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[BancaVerdeAPI.DTOs.ProductResponseDto, BancaVerdeAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 18:44:16.384 -03:00 [INF] Executed action BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI) in 4.2036ms
+2026-06-06 18:44:16.385 -03:00 [INF] Executed endpoint 'BancaVerdeAPI.Controllers.ProductsController.GetProducts (BancaVerdeAPI)'
+2026-06-06 18:44:16.386 -03:00 [INF] HTTP GET /api/Products responded 200 in 14.2471 ms
+2026-06-06 18:44:16.388 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5092/api/Products - 200 null application/json; charset=utf-8 18.4132ms
+2026-06-06 19:18:30.147 -03:00 [INF] Application is shutting down...

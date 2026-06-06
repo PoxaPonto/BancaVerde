@@ -17,13 +17,16 @@ public class AuthController : ControllerBase
 {
     private readonly AppDbContext _context;
     private readonly IConfiguration _configuration;
+    private readonly ILogger<AuthController> _logger;
 
     public AuthController(
         AppDbContext context,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        ILogger<AuthController> logger)
     {
         _context = context;
         _configuration = configuration;
+        _logger = logger;
     }
 
     [HttpPost("register")]
@@ -33,10 +36,17 @@ public class AuthController : ControllerBase
             .AnyAsync(u => u.Email == request.Email);
 
         if (emailExists)
+        {
+            _logger.LogWarning(
+                "Tentativa de cadastro com e-mail já existente: {Email}",
+                request.Email
+            );
+
             return BadRequest(new ApiResponse<object>(
                 false,
                 "Este e-mail já está cadastrado."
             ));
+        }
 
         var user = new User
         {
@@ -49,6 +59,13 @@ public class AuthController : ControllerBase
         _context.Users.Add(user);
 
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation(
+            "Novo usuário cadastrado. Id: {UserId}, Nome: {Name}, Email: {Email}",
+            user.Id,
+            user.Name,
+            user.Email
+        );
 
         return Ok(new ApiResponse<object>(
             true,
@@ -63,10 +80,17 @@ public class AuthController : ControllerBase
             .FirstOrDefaultAsync(u => u.Email == loginData.Email);
 
         if (user == null)
+        {
+            _logger.LogWarning(
+                "Tentativa de login com e-mail inexistente: {Email}",
+                loginData.Email
+            );
+
             return Unauthorized(new ApiResponse<object>(
                 false,
                 "E-mail ou senha inválidos."
             ));
+        }
 
         bool passwordValid = BCrypt.Net.BCrypt.Verify(
             loginData.Password,
@@ -74,10 +98,18 @@ public class AuthController : ControllerBase
         );
 
         if (!passwordValid)
+        {
+            _logger.LogWarning(
+                "Tentativa de login com senha inválida. Usuário: {UserId}, Email: {Email}",
+                user.Id,
+                user.Email
+            );
+
             return Unauthorized(new ApiResponse<object>(
                 false,
                 "E-mail ou senha inválidos."
             ));
+        }
 
         var userRole = string.IsNullOrWhiteSpace(user.Role)
             ? "User"
@@ -87,6 +119,10 @@ public class AuthController : ControllerBase
 
         var key = Encoding.UTF8.GetBytes(
             _configuration["Jwt:Key"]!
+        );
+
+        var expiresAt = DateTime.UtcNow.AddHours(
+            _configuration.GetValue<int>("Jwt:ExpirationHours")
         );
 
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -99,7 +135,7 @@ public class AuthController : ControllerBase
                 new Claim(ClaimTypes.Role, userRole)
             }),
 
-            Expires = DateTime.UtcNow.AddHours(2),
+            Expires = expiresAt,
 
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
@@ -115,8 +151,17 @@ public class AuthController : ControllerBase
             UserId = user.Id,
             Name = user.Name,
             Email = user.Email,
-            Role = userRole
+            Role = userRole,
+            ExpiresAt = expiresAt
         };
+
+        _logger.LogInformation(
+            "Login realizado com sucesso. Usuário: {UserId}, Nome: {Name}, Email: {Email}, Role: {Role}",
+            user.Id,
+            user.Name,
+            user.Email,
+            userRole
+        );
 
         return Ok(new ApiResponse<object>(
             true,
