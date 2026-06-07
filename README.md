@@ -1,18 +1,44 @@
 # 🌱 Banca Verde
 
-Sistema completo de gerenciamento de estoque desenvolvido com ASP.NET Core e React.
+Sistema Full Stack de gerenciamento de estoque desenvolvido com **ASP.NET Core**, **Entity Framework Core**, **SQL Server** e **React**.
 
-O projeto foi criado para demonstrar conhecimentos em desenvolvimento Full Stack, autenticação JWT, controle de acesso por perfis, dashboard analítico, versionamento de API, logs e paginação.
+O projeto foi desenvolvido para simular um sistema real de gestão de estoque, incluindo autenticação JWT, controle de acesso por perfil, dashboard analítico, movimentação de estoque, versionamento de API, paginação e geração de logs.
 
 ---
 
-# 📸 Telas do Sistema
+## 🚀 Destaques do Projeto
+
+✔ Autenticação JWT
+
+✔ Controle de acesso por Roles (Admin e User)
+
+✔ Dashboard Analítico
+
+✔ Gestão de Produtos
+
+✔ Gestão de Categorias
+
+✔ Gestão de Usuários
+
+✔ Registro de Vendas
+
+✔ Histórico de Movimentações
+
+✔ Paginação
+
+✔ Versionamento de API
+
+✔ Logs com Serilog
+
+✔ Middleware Global de Exceções
+
+---
+
+# 📸 Demonstração
 
 ## Login
 
 ![Login](screenshots/login.png)
-
-Sistema protegido por autenticação JWT.
 
 ---
 
@@ -20,15 +46,11 @@ Sistema protegido por autenticação JWT.
 
 ![Dashboard](screenshots/dashboard.png)
 
-Painel com métricas e gráficos em tempo real.
-
 ---
 
 ## Produtos
 
 ![Produtos](screenshots/produtos.png)
-
-Gerenciamento completo de produtos.
 
 ---
 
@@ -36,15 +58,11 @@ Gerenciamento completo de produtos.
 
 ![Categorias](screenshots/categorias.png)
 
-Controle das categorias do estoque.
-
 ---
 
 ## Usuários
 
-![Usuarios](screenshots/usuarios.png)
-
-Gerenciamento de usuários e permissões.
+![Usuários](screenshots/usuarios.png)
 
 ---
 
@@ -52,51 +70,70 @@ Gerenciamento de usuários e permissões.
 
 ![Vendas](screenshots/vendas.png)
 
-Registro de saídas de estoque.
-
 ---
 
 ## Movimentações
 
-![Movimentacoes](screenshots/movimentacoes.png)
-
-Histórico completo de operações realizadas.
+![Movimentações](screenshots/movimentacoes.png)
 
 ---
 
-# 🚀 Funcionalidades
+# 🏗 Arquitetura
 
-## Autenticação
+```text
+React
+   │
+   ▼
+Axios
+   │
+   ▼
+ASP.NET Core Web API
+   │
+   ▼
+Entity Framework Core
+   │
+   ▼
+SQL Server
+```
+
+---
+
+# ✨ Funcionalidades
+
+## 🔐 Autenticação
 
 - Login JWT
+- BCrypt para criptografia de senha
 - Controle de acesso por perfil
 - Rotas protegidas
-- Roles Admin e User
+- Endpoints protegidos
 
 ---
 
-## Produtos
+## 📦 Produtos
 
 - Cadastro
 - Edição
 - Exclusão
 - Busca
-- Filtro
 - Ordenação
+- Filtros
 - Paginação
 - Controle de estoque
+- Visualização detalhada
 
 ---
 
-## Categorias
+## 🏷 Categorias
 
 - Cadastro
 - Edição
 - Exclusão
+- Associação com produtos
 
 ---
 
-## Usuários
+## 👥 Usuários
 
 - Cadastro
 - Edição
@@ -105,101 +142,112 @@ Histórico completo de operações realizadas.
 
 ---
 
-## Vendas
+## 💰 Vendas
 
-- Registro de vendas
-- Atualização automática de estoque
+- Registro de venda
+- Validação de estoque
+- Atualização automática do estoque
+- Registro automático de movimentação
 
 ---
 
-## Movimentações Apenas Para o Usuário ADM
+## 📋 Movimentações Para Usuários ADM
+
+Registro de:
 
 - CREATE
 - UPDATE
 - DELETE
 - SALE
 
----
+com:
 
-## Dashboard
-
-- Total de produtos
-- Total de categorias
-- Total de usuários
-- Total de estoque
-- Estoque baixo
-- Valor total do estoque
-- Produto mais caro
-- Produto mais barato
-- Categoria com mais produtos
-- Produto mais vendido
-- Última venda
-- Gráficos por categoria
+- Usuário responsável
+- Produto afetado
+- Estoque anterior
+- Estoque atual
+- Data da operação
 
 ---
 
-# 🏗 Arquitetura
+## 📊 Dashboard
 
-```text
-React Frontend
-        │
-        ▼
-ASP.NET Core API
-        │
-        ▼
-Entity Framework Core
-        │
-        ▼
-SQL Server
-```
+Indicadores disponíveis:
+
+- Total de Produtos
+- Total de Categorias
+- Total de Usuários
+- Estoque Total
+- Produtos com Estoque Baixo
+- Valor Total do Estoque
+- Produto Mais Caro
+- Produto Mais Barato
+- Categoria com Mais Produtos
+- Total de Vendas
+- Quantidade Vendida
+- Última Venda
+- Produto Mais Vendido
 
 ---
 
-# 🔐 Segurança
+# 🔒 Segurança
 
 O sistema utiliza:
 
 - JWT Authentication
 - Role Based Authorization
-- Middleware global de exceções
-- Logs de requisições com Serilog
-
----
-
-# 📄 Versionamento de API
-
-A API utiliza versionamento.
+- BCrypt Password Hashing
+- Middleware Global de Exceções
 
 Exemplo:
 
 ```http
-/api/v1/products
-/api/v1/categories
-/api/v1/users
+Authorization: Bearer {token}
 ```
-
-Isso permite criar futuras versões sem quebrar clientes existentes.
 
 ---
 
-# 📊 Paginação
+# 📄 Versionamento da API
+
+Versão atual:
+
+```http
+/api/v1
+```
+
+Exemplos:
+
+```http
+GET /api/v1/Products
+GET /api/v1/Categories
+GET /api/v1/Users
+GET /api/v1/Dashboard
+```
+
+O versionamento permite evolução futura da API sem quebrar integrações existentes.
+
+---
+
+# 📑 Paginação
 
 Exemplo:
 
 ```http
-GET /api/v1/products?page=1&pageSize=10
+GET /api/v1/Products?page=1&pageSize=10
 ```
 
-Resposta:
+Também suporta:
 
-```json
-{
-  "page": 1,
-  "pageSize": 10,
-  "totalRecords": 150,
-  "totalPages": 15,
-  "data": []
-}
+```http
+search
+category
+sort
+```
+
+Exemplo:
+
+```http
+GET /api/v1/Products?page=1&pageSize=10&search=banana&category=Frutas&sort=name-asc
 ```
 
 ---
@@ -208,17 +256,22 @@ Resposta:
 
 Implementados utilizando Serilog.
 
-Exemplo:
+Exemplos registrados:
+
+- Requisições HTTP
+- Erros
+- Exceções
+- Operações do sistema
+
+Arquivos:
 
 ```text
-[INF] HTTP GET /api/v1/products
-[INF] HTTP POST /api/v1/products
-[ERR] Erro inesperado...
+Logs/log-yyyyMMdd.txt
 ```
 
 ---
 
-# 🛠 Tecnologias Utilizadas
+# 🛠 Tecnologias
 
 ## Backend
 
@@ -226,18 +279,19 @@ Exemplo:
 - Entity Framework Core
 - SQL Server
 - JWT
-- Swagger
+- BCrypt
 - Serilog
+- Swagger
 - API Versioning
 
 ## Frontend
 
 - React
-- React Router
+- React Router DOM
 - Axios
 - React Toastify
-- Recharts
 - SweetAlert2
+- Recharts
 
 ---
 
@@ -256,11 +310,13 @@ BancaVerde
 │   └── Logs
 │
 ├── frontend
-│   ├── Pages
 │   ├── Components
+│   ├── Pages
 │   ├── Routes
 │   ├── Services
 │   └── Assets
+│
+├── screenshots
 │
 └── README.md
 ```
@@ -273,14 +329,16 @@ BancaVerde
 
 ```bash
 dotnet restore
+
 dotnet ef database update
+
 dotnet run
 ```
 
 Swagger:
 
 ```text
-https://localhost:5092/swagger
+http://localhost:5092/swagger
 ```
 
 ---
@@ -289,23 +347,66 @@ https://localhost:5092/swagger
 
 ```bash
 npm install
+
 npm run dev
 ```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🧠 Conhecimentos Aplicados
+
+Durante o desenvolvimento foram utilizados conceitos de:
+
+- APIs REST
+- Entity Framework Core
+- SQL Server
+- JWT Authentication
+- Authorization
+- DTOs
+- Middleware
+- Logging
+- Paginação
+- Versionamento de API
+- React
+- Axios
+- Consumo de APIs
+- Dashboards Analíticos
 
 ---
 
 # 🔮 Melhorias Futuras
 
-- Exportação para Excel
+- Refresh Token
+- Upload de Imagens
 - Relatórios PDF
-- Upload de imagens de produtos
-- Notificações em tempo real
-- Dashboard avançado
+- Exportação Excel
+- Docker
+- CI/CD
+- Testes Automatizados
 
 ---
 
 # 👨‍💻 Autor
 
-Guilherme Cavalcante
+**Guilherme Cavalcante**
 
-Projeto desenvolvido para estudo e demonstração de conhecimentos em desenvolvimento Full Stack com ASP.NET Core e React.
+Projeto desenvolvido para estudo e demonstração de competências Full Stack utilizando tecnologias amplamente utilizadas no mercado.
+
+---
+
+## 📌 Status
+
+🟢 Projeto Concluído
+
+- Backend Finalizado
+- Frontend Finalizado
+- Paginação Implementada
+- Logs Implementados
+- API Versionada
+- Pronto para Deploy
