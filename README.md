@@ -1,4 +1,4 @@
-# 🌱 Banca Verde
+#  Banca Verde
 
 Sistema Full Stack de gerenciamento de estoque desenvolvido com **ASP.NET Core**, **Entity Framework Core**, **SQL Server** e **React**.
 
