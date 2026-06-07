@@ -4,8 +4,31 @@ const api = axios.create({
     baseURL: "http://localhost:5092/api"
 });
 
+function logout() {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("expiresAt");
+
+    window.location.href = "/";
+}
+
+function isTokenExpired() {
+    const expiresAt = sessionStorage.getItem("expiresAt");
+
+    if (!expiresAt) {
+        return true;
+    }
+
+    return new Date(expiresAt) <= new Date();
+}
+
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
+
+    if (token && isTokenExpired()) {
+        logout();
+        return config;
+    }
 
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -19,10 +42,7 @@ api.interceptors.response.use(
 
     (error) => {
         if (error.response?.status === 401) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-
-            window.location.href = "/";
+            logout();
         }
 
         return Promise.reject(error);

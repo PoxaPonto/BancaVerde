@@ -21,11 +21,18 @@ export default function Login() {
                 password
             });
 
-            localStorage.setItem("token", response.data.data.token);
+            const loginData = response.data.data;
 
-            localStorage.setItem(
+            sessionStorage.setItem("token", loginData.token);
+
+            sessionStorage.setItem(
                 "user",
-                JSON.stringify(response.data.data)
+                JSON.stringify(loginData)
+            );
+
+            sessionStorage.setItem(
+                "expiresAt",
+                loginData.expiresAt
             );
 
             toast.success("Login realizado com sucesso!");

@@ -4,14 +4,16 @@ export default function Layout() {
     const navigate = useNavigate();
 
     const user = JSON.parse(
-        localStorage.getItem("user") || "{}"
+        sessionStorage.getItem("user") || "{}"
     );
 
     const isAdmin = user.role === "Admin";
 
     function handleLogout() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
+        sessionStorage.removeItem("expiresAt");
+        
         navigate("/");
     }
 
