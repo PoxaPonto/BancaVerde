@@ -21,7 +21,7 @@ export default function Layout() {
         <div style={{ display: "flex", minHeight: "100vh" }}>
             <aside style={sidebarStyle}>
                 <h2 style={logoStyle}>
-                    🌿 Banca Verde
+                    Banca Verde
                 </h2>
 
                 <div style={userBoxStyle}>
