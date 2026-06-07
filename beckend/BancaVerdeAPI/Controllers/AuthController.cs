@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Asp.Versioning;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
@@ -12,7 +13,8 @@ using BancaVerdeAPI.Responses;
 namespace BancaVerdeAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly AppDbContext _context;

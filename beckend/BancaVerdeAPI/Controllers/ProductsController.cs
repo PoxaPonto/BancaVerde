@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using BancaVerdeAPI.Data;
+using Asp.Versioning;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
 using BancaVerdeAPI.Responses;
@@ -11,7 +12,8 @@ namespace BancaVerdeAPI.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class ProductsController : ControllerBase
 {
     private readonly AppDbContext _context;
@@ -29,27 +31,87 @@ public class ProductsController : ControllerBase
                "Desconhecido";
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetProducts()
-    {
-        var products = await _context.Products
-            .Include(p => p.Category)
-            .Select(p => new ProductResponseDto
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                Stock = p.Stock,
-                CategoryName = p.Category != null ? p.Category.Name : ""
-            })
-            .ToListAsync();
+[HttpGet]
+public async Task<IActionResult> GetProducts(
+    [FromQuery] int page = 1,
+    [FromQuery] int pageSize = 10,
+    [FromQuery] string? search = null,
+    [FromQuery] string? category = null,
+    [FromQuery] string? sort = "name-asc")
+{
+    if (page <= 0)
+        page = 1;
 
-        return Ok(new ApiResponse<List<ProductResponseDto>>(
+    if (pageSize <= 0)
+        pageSize = 10;
+
+    var query = _context.Products
+        .Include(p => p.Category)
+        .AsQueryable();
+
+    if (!string.IsNullOrWhiteSpace(search))
+    {
+        query = query.Where(p =>
+            p.Name.Contains(search)
+        );
+    }
+
+    if (!string.IsNullOrWhiteSpace(category) && category != "all")
+    {
+        query = query.Where(p =>
+            p.Category != null &&
+            p.Category.Name == category
+        );
+    }
+
+    query = sort switch
+    {
+        "name-desc" => query.OrderByDescending(p => p.Name),
+        "price-high" => query.OrderByDescending(p => p.Price),
+        "price-low" => query.OrderBy(p => p.Price),
+        "stock-high" => query.OrderByDescending(p => p.Stock),
+        "stock-low" => query.OrderBy(p => p.Stock),
+        _ => query.OrderBy(p => p.Name)
+    };
+
+    var totalRecords = await query.CountAsync();
+
+    var products = await query
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .Select(p => new ProductResponseDto
+        {
+            Id = p.Id,
+            Name = p.Name,
+            Price = p.Price,
+            Stock = p.Stock,
+            CategoryName = p.Category != null
+                ? p.Category.Name
+                : ""
+        })
+        .ToListAsync();
+
+    var totalPages = (int)Math.Ceiling(
+        totalRecords / (double)pageSize
+    );
+
+    var response = new PagedResponseDto<ProductResponseDto>
+    {
+        Page = page,
+        PageSize = pageSize,
+        TotalRecords = totalRecords,
+        TotalPages = totalPages,
+        Data = products
+    };
+
+    return Ok(
+        new ApiResponse<PagedResponseDto<ProductResponseDto>>(
             true,
             "Produtos encontrados com sucesso.",
-            products
-        ));
-    }
+            response
+        )
+    );
+}
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProduct(int id)
@@ -172,7 +234,7 @@ public class ProductsController : ControllerBase
 
         return CreatedAtAction(
             nameof(GetProduct),
-            new { id = product.Id },
+            new { version = "1.0", id = product.Id },
             new ApiResponse<ProductResponseDto>(
                 true,
                 "Produto criado com sucesso.",

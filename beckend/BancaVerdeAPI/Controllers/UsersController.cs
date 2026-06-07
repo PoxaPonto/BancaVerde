@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
+using Asp.Versioning;
 using BancaVerdeAPI.DTOs;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.Responses;
@@ -10,7 +11,8 @@ namespace BancaVerdeAPI.Controllers;
 
 [Authorize(Roles = "Admin")]
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class UsersController : ControllerBase
 {
     private readonly AppDbContext _context;

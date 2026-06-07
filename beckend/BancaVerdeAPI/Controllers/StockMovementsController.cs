@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.DTOs;
+using Asp.Versioning;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.Responses;
 
@@ -11,7 +12,8 @@ namespace BancaVerdeAPI.Controllers;
 
 [Authorize(Roles = "Admin")]
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class StockMovementsController : ControllerBase
 {
     private readonly AppDbContext _context;

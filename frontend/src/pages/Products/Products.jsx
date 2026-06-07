@@ -15,63 +15,35 @@ export default function Products() {
     const [productToEdit, setProductToEdit] = useState(null);
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
-    const categories = [
-        ...new Set(products.map((product) => product.categoryName))
-    ];
-
-    const filteredProducts = products
-        .filter((product) =>
-            product.name.toLowerCase().includes(search.toLowerCase())
-        )
-        .filter((product) =>
-            categoryFilter === "all"
-                ? true
-                : product.categoryName === categoryFilter
-        )
-        .sort((a, b) => {
-            if (sortOption === "name-asc") {
-                return a.name.localeCompare(b.name);
-            }
-
-            if (sortOption === "name-desc") {
-                return b.name.localeCompare(a.name);
-            }
-
-            if (sortOption === "price-high") {
-                return b.price - a.price;
-            }
-
-            if (sortOption === "price-low") {
-                return a.price - b.price;
-            }
-
-            if (sortOption === "stock-high") {
-                return b.stock - a.stock;
-            }
-
-            if (sortOption === "stock-low") {
-                return a.stock - b.stock;
-            }
-
-            return 0;
-        });
+    const categories = [...new Set(products.map((product) => product.categoryName))];
 
     useEffect(() => {
-        loadProducts();
+      loadProducts();
     }, []);
 
-    async function loadProducts() {
+    useEffect(() => {
+       loadProducts(1);
+    },[search, categoryFilter, sortOption]);
+
+    async function loadProducts(currentPage = page) {
         try {
-            const response = await api.get("/Products");
-            setProducts(response.data.data);
+            const response = await api.get(
+               `/Products?page=${currentPage}&pageSize=10&search=${search}&category=${categoryFilter}&sort=${sortOption}`
+            );
+
+            setProducts(response.data.data.data);
+            setPage(response.data.data.page);
+            setTotalPages(response.data.data.totalPages);
         }
         catch (error) {
             console.error(error);
             toast.error("Erro ao carregar produtos.");
         }
         finally {
-            setLoading(false);
+          setLoading(false);
         }
     }
 
@@ -104,20 +76,15 @@ export default function Products() {
             color: "#fff"
         });
 
-        if (!result.isConfirmed) {
-            return;
-        }
+        if (!result.isConfirmed) return;
 
         try {
             await api.delete(`/Products/${id}`);
-
             toast.success("Produto excluído com sucesso!");
-
-            loadProducts();
+            loadProducts(page);
         }
         catch (error) {
             console.error(error);
-
             toast.error(
                 error.response?.data?.message ||
                 "Erro ao excluir produto."
@@ -134,16 +101,16 @@ export default function Products() {
             <ProductModal
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
-                onProductSaved={loadProducts}
+                onProductSaved={() => loadProducts(page)}
                 productToEdit={productToEdit}
             />
-            
+
             <ProductDetailsModal
                 isOpen={detailsOpen}
                 onClose={() => setDetailsOpen(false)}
                 product={selectedProduct}
             />
-            
+
             <div style={headerStyle}>
                 <div>
                     <h1>Produtos</h1>
@@ -194,140 +161,120 @@ export default function Products() {
                 </select>
             </div>
 
-            {filteredProducts.length === 0 ? (
+            {products.length === 0 ? (
                 <p style={{ color: "#9ca3af", marginTop: "20px" }}>
                     Nenhum produto encontrado.
                 </p>
             ) : (
-                <table style={tableStyle}>
-                    <thead>
-                        <tr style={{ background: "#1f2937" }}>
-                            <th style={thStyle}>ID</th>
-                            <th style={thStyle}>Nome</th>
-                            <th style={thStyle}>Preço</th>
-                            <th style={thStyle}>Estoque</th>
-                            <th style={thStyle}>Categoria</th>
-                            <th style={thStyle}>Ações</th>
-                        </tr>
-                    </thead>
+                <>
+                    <table style={tableStyle}>
+                        <thead>
+                            <tr style={{ background: "#1f2937" }}>
+                                <th style={thStyle}>ID</th>
+                                <th style={thStyle}>Nome</th>
+                                <th style={thStyle}>Preço</th>
+                                <th style={thStyle}>Estoque</th>
+                                <th style={thStyle}>Categoria</th>
+                                <th style={thStyle}>Ações</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td style={tdStyle}>{product.id}</td>
-                    
-                                <td style={tdStyle}>
-                                    {product.name}
-                                </td>
-                                        
-                                <td style={tdStyle}>
-                                    {Number(product.price).toLocaleString(
-                                        "pt-BR",
-                                        {
+                        <tbody>
+                            {products.map((product) => (
+                                <tr key={product.id}>
+                                    <td style={tdStyle}>{product.id}</td>
+
+                                    <td style={tdStyle}>{product.name}</td>
+
+                                    <td style={tdStyle}>
+                                        {Number(product.price).toLocaleString("pt-BR", {
                                             style: "currency",
                                             currency: "BRL"
-                                        }
-                                    )}
-                                </td>
-                    
-                                <td style={tdStyle}>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: "10px"
-                                        }}
-                                    >
-                                        <span>{product.stock}</span>
-                    
-                                        {product.stock <= 5 ? (
-                                            <span
-                                                style={{
-                                                    background: "#7f1d1d",
-                                                    color: "#fecaca",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                CRÍTICO
-                                            </span>
-                                        ) : product.stock <= 10 ? (
-                                            <span
-                                                style={{
-                                                    background: "#78350f",
-                                                    color: "#fde68a",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                ATENÇÃO
-                                            </span>
-                                        ) : (
-                                            <span
-                                                style={{
-                                                    background: "#14532d",
-                                                    color: "#bbf7d0",
-                                                    padding: "4px 10px",
-                                                    borderRadius: "999px",
-                                                    fontSize: "12px",
-                                                    fontWeight: "bold"
-                                                }}
-                                            >
-                                                OK
-                                            </span>
-                                        )}
-                                    </div>
-                                </td>
-                    
-                                <td style={tdStyle}>
-                                    {product.categoryName}
-                                </td>
-                                
-                                <td style={tdStyle}>
-                                    <button
-                                        onClick={() => handleDetails(product)}
-                                        style={{
-                                            ...actionButtonStyle,
-                                            background: "#059669"
-                                        }}
-                                    >
-                                        Detalhes
-                                    </button>
+                                        })}
+                                    </td>
 
-                                    <button
-                                        onClick={() => handleEdit(product)}
-                                        style={{
-                                            ...actionButtonStyle,
-                                            background: "#2563eb",
-                                            marginLeft: "8px"
-                                        }}
-                                    >
-                                        Editar
-                                    </button>
+                                    <td style={tdStyle}>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                            <span>{product.stock}</span>
 
-                                    <button
-                                        onClick={() => handleDelete(product.id)}
-                                        style={{
-                                            ...actionButtonStyle,
-                                            background: "#dc2626",
-                                            marginLeft: "8px"
-                                        }}
-                                    >
-                                        Excluir
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                                            {product.stock <= 5 ? (
+                                                <span style={criticalBadgeStyle}>CRÍTICO</span>
+                                            ) : product.stock <= 10 ? (
+                                                <span style={warningBadgeStyle}>ATENÇÃO</span>
+                                            ) : (
+                                                <span style={okBadgeStyle}>OK</span>
+                                            )}
+                                        </div>
+                                    </td>
 
+                                    <td style={tdStyle}>{product.categoryName}</td>
 
+                                    <td style={tdStyle}>
+                                        <button
+                                            onClick={() => handleDetails(product)}
+                                            style={{
+                                                ...actionButtonStyle,
+                                                background: "#059669"
+                                            }}
+                                        >
+                                            Detalhes
+                                        </button>
 
+                                        <button
+                                            onClick={() => handleEdit(product)}
+                                            style={{
+                                                ...actionButtonStyle,
+                                                background: "#2563eb",
+                                                marginLeft: "8px"
+                                            }}
+                                        >
+                                            Editar
+                                        </button>
 
-                </table>
+                                        <button
+                                            onClick={() => handleDelete(product.id)}
+                                            style={{
+                                                ...actionButtonStyle,
+                                                background: "#dc2626",
+                                                marginLeft: "8px"
+                                            }}
+                                        >
+                                            Excluir
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div style={paginationStyle}>
+                        <button
+                            disabled={page === 1}
+                            onClick={() => loadProducts(page - 1)}
+                            style={{
+                                ...paginationButtonStyle,
+                                opacity: page === 1 ? 0.5 : 1
+                            }}
+                        >
+                            Anterior
+                        </button>
+
+                        <span style={paginationTextStyle}>
+                            Página {page} de {totalPages}
+                        </span>
+
+                        <button
+                            disabled={page === totalPages}
+                            onClick={() => loadProducts(page + 1)}
+                            style={{
+                                ...paginationButtonStyle,
+                                opacity: page === totalPages ? 0.5 : 1
+                            }}
+                        >
+                            Próxima
+                        </button>
+                    </div>
+                </>
             )}
         </div>
     );
@@ -397,6 +344,55 @@ const tdStyle = {
 const actionButtonStyle = {
     padding: "8px 12px",
     borderRadius: "6px",
+    color: "#fff",
+    fontWeight: "bold"
+};
+
+const criticalBadgeStyle = {
+    background: "#7f1d1d",
+    color: "#fecaca",
+    padding: "4px 10px",
+    borderRadius: "999px",
+    fontSize: "12px",
+    fontWeight: "bold"
+};
+
+const warningBadgeStyle = {
+    background: "#78350f",
+    color: "#fde68a",
+    padding: "4px 10px",
+    borderRadius: "999px",
+    fontSize: "12px",
+    fontWeight: "bold"
+};
+
+const okBadgeStyle = {
+    background: "#14532d",
+    color: "#bbf7d0",
+    padding: "4px 10px",
+    borderRadius: "999px",
+    fontSize: "12px",
+    fontWeight: "bold"
+};
+
+const paginationStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "12px",
+    marginTop: "20px"
+};
+
+const paginationButtonStyle = {
+    padding: "10px 14px",
+    borderRadius: "8px",
+    background: "#1f2937",
+    color: "#fff",
+    fontWeight: "bold",
+    border: "1px solid #374151"
+};
+
+const paginationTextStyle = {
     color: "#fff",
     fontWeight: "bold"
 };

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using BancaVerdeAPI.Data;
+using Asp.Versioning;
 using BancaVerdeAPI.Models;
 using BancaVerdeAPI.DTOs;
 using BancaVerdeAPI.Responses;
@@ -10,7 +11,8 @@ namespace BancaVerdeAPI.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class CategoriesController : ControllerBase
 {
     private readonly AppDbContext _context;

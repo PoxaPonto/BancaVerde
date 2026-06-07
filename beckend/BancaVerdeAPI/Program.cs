@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Serilog;
+using Asp.Versioning;
 using BancaVerdeAPI.Data;
 using BancaVerdeAPI.Middlewares;
 
@@ -22,8 +23,27 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+})
+.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
+
 builder.Services.AddSwaggerGen(options =>
 {
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Banca Verde API",
+        Version = "v1"
+    });
+
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "Digite: Bearer {seu token JWT}",
@@ -104,6 +124,7 @@ app.UseSwagger();
 
 app.UseSwaggerUI(options =>
 {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Banca Verde API v1");
     options.InjectStylesheet("/swagger-ui/custom.css");
 });
 
