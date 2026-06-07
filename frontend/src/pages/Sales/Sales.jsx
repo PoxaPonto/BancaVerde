@@ -12,21 +12,28 @@ export default function Sales() {
     useEffect(() => {
         loadProducts();
     }, []);
-
+    
     async function loadProducts() {
         try {
-            const response = await api.get("/Products");
-            setProducts(response.data.data);
+            const response = await api.get(
+                "/Products?page=1&pageSize=1000&search=&category=all&sort=name-asc"
+            );
+
+            setProducts(response.data.data.data);
         }
         catch (error) {
             console.error(error);
             toast.error("Erro ao carregar produtos.");
-        }
     }
+}
+
+
 
     const filteredProducts = productSearch.trim()
         ? products.filter((product) =>
-            product.name.toLowerCase().includes(productSearch.toLowerCase())
+            product.name
+            .toLowerCase()
+            .includes(productSearch.trim().toLowerCase())
         )
         : [];
 
@@ -54,7 +61,7 @@ export default function Sales() {
 
         try {
             setLoading(true);
-
+            
             await api.post("/StockMovements/sale", {
                 productId: Number(productId),
                 quantity: Number(quantity)
@@ -69,12 +76,12 @@ export default function Sales() {
             loadProducts();
         }
         catch (error) {
-            console.error(error);
+            console.error("ERRO COMPLETO:", error);
 
-            toast.error(
-                error.response?.data?.message ||
-                "Erro ao registrar venda."
-            );
+            console.log("STATUS:", error.response?.status);
+            console.log("DATA:", error.response?.data);
+
+            toast.error("Erro ao carregar produtos.");
         }
         finally {
             setLoading(false);
