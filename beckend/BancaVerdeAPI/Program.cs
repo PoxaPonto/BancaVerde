@@ -120,7 +120,17 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
     db.Database.Migrate();
+
+    var adminUser = db.Users
+        .FirstOrDefault(u => u.Email == "admin@teste.com");
+
+    if (adminUser != null)
+    {
+        adminUser.Role = "Admin";
+        db.SaveChanges();
+    }
 }
 
 app.UseSerilogRequestLogging();
