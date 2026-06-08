@@ -281,7 +281,9 @@ Logs/log-yyyyMMdd.txt
 
 ## Banco de Dados
 
-* PostgreSQL (Render)
+* Banco de Dados:
+• SQL Server (desenvolvimento)
+• PostgreSQL (produção)
 
 ---
 
