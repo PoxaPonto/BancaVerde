@@ -1,42 +1,56 @@
-#  Banca Verde
+# 🌱 Banca Verde
 
-Sistema Full Stack de gerenciamento de estoque desenvolvido com **ASP.NET Core**, **Entity Framework Core**, **SQL Server** e **React**.
+Sistema Full Stack de gerenciamento de estoque desenvolvido utilizando **ASP.NET Core Web API**, **Entity Framework Core**, **PostgreSQL** e **React**.
 
-O projeto foi desenvolvido para simular um sistema real de gestão de estoque, incluindo autenticação JWT, controle de acesso por perfil, dashboard analítico, movimentação de estoque, versionamento de API, paginação e geração de logs.
+O projeto foi criado com o objetivo de simular um sistema real utilizado por empresas para controle de estoque, produtos, categorias, usuários e movimentações, aplicando conceitos amplamente utilizados no mercado de desenvolvimento de software.
 
 ---
 
-## 🚀 Destaques do Projeto
+# 🌐 Demonstração Online
 
-✔ Autenticação JWT
+### Sistema Web
 
-✔ Controle de acesso por Roles (Admin e User)
+https://banca-verde.vercel.app
 
-✔ Dashboard Analítico
+### Documentação da API
 
-✔ Gestão de Produtos
+https://bancaverde-api.onrender.com/swagger
 
-✔ Gestão de Categorias
+---
 
-✔ Gestão de Usuários
+# 🚀 Principais Funcionalidades
 
-✔ Registro de Vendas
+✅ Autenticação JWT
 
-✔ Histórico de Movimentações
+✅ Controle de acesso por perfil (Admin e User)
 
-✔ Paginação
+✅ Dashboard Analítico
 
-✔ Versionamento de API
+✅ Gestão de Produtos
 
-✔ Logs com Serilog
+✅ Gestão de Categorias
 
-✔ Middleware Global de Exceções
+✅ Gestão de Usuários
+
+✅ Registro de Vendas
+
+✅ Histórico de Movimentações (Para Admins)
+
+✅ Paginação de Dados
+
+✅ Versionamento de API
+
+✅ Middleware Global de Exceções
+
+✅ Logs com Serilog
+
+✅ Deploy em Produção
 
 ---
 
 # 📸 Demonstração
 
-## Login
+## Tela de Login
 
 ![Login](screenshots/login.png)
 
@@ -48,158 +62,156 @@ O projeto foi desenvolvido para simular um sistema real de gestão de estoque, i
 
 ---
 
-## Produtos
+## Gestão de Produtos
 
 ![Produtos](screenshots/produtos.png)
 
 ---
 
-## Categorias
+## Gestão de Categorias
 
 ![Categorias](screenshots/categorias.png)
 
 ---
 
-## Usuários
+## Gestão de Usuários
 
 ![Usuários](screenshots/usuarios.png)
 
 ---
 
-## Vendas
+## Registro de Vendas
 
 ![Vendas](screenshots/vendas.png)
 
 ---
 
-## Movimentações
+## Histórico de Movimentações
 
 ![Movimentações](screenshots/movimentacoes.png)
 
 ---
 
-# 🏗 Arquitetura
+# 🏗 Arquitetura da Aplicação
 
 ```text
-React
-   │
-   ▼
+Frontend (React + Vite)
+        │
+        ▼
 Axios
-   │
-   ▼
+        │
+        ▼
 ASP.NET Core Web API
-   │
-   ▼
+        │
+        ▼
 Entity Framework Core
-   │
-   ▼
-SQL Server
+        │
+        ▼
+PostgreSQL
 ```
 
 ---
 
 # ✨ Funcionalidades
 
-## 🔐 Autenticação
+## 🔐 Autenticação e Segurança
 
-- Login JWT
-- BCrypt para criptografia de senha
-- Controle de acesso por perfil
-- Rotas protegidas
-- Endpoints protegidos
-
----
-
-## 📦 Produtos
-
-- Cadastro
-- Edição
-- Exclusão
-- Busca
-- Ordenação
-- Filtros
-- Paginação
-- Controle de estoque
-- Visualização detalhada
+* Login com JWT
+* Senhas protegidas com BCrypt
+* Controle de acesso por Roles
+* Rotas protegidas
+* Endpoints protegidos
+* Middleware global para tratamento de exceções
 
 ---
 
-## 🏷 Categorias
+## 📦 Gestão de Produtos
 
-- Cadastro
-- Edição
-- Exclusão
-- Associação com produtos
-
----
-
-## 👥 Usuários
-
-- Cadastro
-- Edição
-- Exclusão
-- Controle de permissões
+* Cadastro de produtos
+* Edição de produtos
+* Exclusão de produtos
+* Busca por nome
+* Controle de estoque
+* Paginação
+* Visualização detalhada
+* Associação com categorias
 
 ---
 
-## 💰 Vendas
+## 🏷 Gestão de Categorias
 
-- Registro de venda
-- Validação de estoque
-- Atualização automática do estoque
-- Registro automático de movimentação
-
----
-
-## 📋 Movimentações Para Usuários ADM
-
-Registro de:
-
-- CREATE
-- UPDATE
-- DELETE
-- SALE
-
-com:
-
-- Usuário responsável
-- Produto afetado
-- Estoque anterior
-- Estoque atual
-- Data da operação
+* Cadastro
+* Edição
+* Exclusão
+* Associação com produtos
 
 ---
 
-## 📊 Dashboard
+## 👥 Gestão de Usuários
+
+* Cadastro
+* Controle de permissões
+* Diferenciação entre Admin e User
+
+---
+
+## 💰 Registro de Vendas
+
+* Baixa automática do estoque
+* Validação de quantidade disponível
+* Registro automático da movimentação
+
+---
+
+## 📋 Histórico de Movimentações
+
+O sistema registra automaticamente:
+
+* CREATE
+* UPDATE
+* DELETE
+* SALE
+
+Além de armazenar:
+
+* Usuário responsável
+* Produto afetado
+* Estoque anterior
+* Estoque atualizado
+* Data da operação
+
+---
+
+## 📊 Dashboard Analítico
 
 Indicadores disponíveis:
 
-- Total de Produtos
-- Total de Categorias
-- Total de Usuários
-- Estoque Total
-- Produtos com Estoque Baixo
-- Valor Total do Estoque
-- Produto Mais Caro
-- Produto Mais Barato
-- Categoria com Mais Produtos
-- Total de Vendas
-- Quantidade Vendida
-- Última Venda
-- Produto Mais Vendido
+* Total de Produtos
+* Total de Categorias
+* Total de Usuários
+* Estoque Total
+* Valor Total do Estoque
+* Produtos com Estoque Baixo
+* Produto Mais Caro
+* Produto Mais Barato
+* Categoria com Mais Produtos
+* Total de Vendas
+* Quantidade Vendida
+* Última Venda
+* Produto Mais Vendido
 
 ---
 
 # 🔒 Segurança
 
-O sistema utiliza:
+A aplicação utiliza:
 
-- JWT Authentication
-- Role Based Authorization
-- BCrypt Password Hashing
-- Middleware Global de Exceções
+* JWT Authentication
+* Role Based Authorization
+* BCrypt Password Hashing
+* Middleware Global de Exceções
 
-Exemplo:
+Exemplo de autenticação:
 
 ```http
 Authorization: Bearer {token}
@@ -236,32 +248,18 @@ Exemplo:
 GET /api/v1/Products?page=1&pageSize=10
 ```
 
-Também suporta:
-
-```http
-search
-category
-sort
-```
-
-Exemplo:
-
-```http
-GET /api/v1/Products?page=1&pageSize=10&search=banana&category=Frutas&sort=name-asc
-```
-
 ---
 
 # 📝 Logs
 
 Implementados utilizando Serilog.
 
-Exemplos registrados:
+Eventos registrados:
 
-- Requisições HTTP
-- Erros
-- Exceções
-- Operações do sistema
+* Requisições HTTP
+* Exceções
+* Erros
+* Operações da aplicação
 
 Arquivos:
 
@@ -271,27 +269,44 @@ Logs/log-yyyyMMdd.txt
 
 ---
 
-# 🛠 Tecnologias
-
-## Backend
-
-- ASP.NET Core
-- Entity Framework Core
-- SQL Server
-- JWT
-- BCrypt
-- Serilog
-- Swagger
-- API Versioning
+# ☁️ Deploy
 
 ## Frontend
 
-- React
-- React Router DOM
-- Axios
-- React Toastify
-- SweetAlert2
-- Recharts
+* Vercel
+
+## Backend
+
+* Render
+
+## Banco de Dados
+
+* PostgreSQL (Render)
+
+---
+
+# 🛠 Tecnologias Utilizadas
+
+## Backend
+
+* ASP.NET Core
+* Entity Framework Core
+* PostgreSQL
+* JWT
+* BCrypt
+* Serilog
+* Swagger
+* API Versioning
+
+## Frontend
+
+* React
+* Vite
+* Axios
+* React Router DOM
+* React Toastify
+* SweetAlert2
+* Recharts
 
 ---
 
@@ -323,7 +338,7 @@ BancaVerde
 
 ---
 
-# ⚙ Como Executar
+# ⚙️ Executando Localmente
 
 ## Backend
 
@@ -359,54 +374,70 @@ http://localhost:5173
 
 ---
 
-# 🧠 Conhecimentos Aplicados
+# 🧠 Conceitos Aplicados
 
 Durante o desenvolvimento foram utilizados conceitos de:
 
-- APIs REST
-- Entity Framework Core
-- SQL Server
-- JWT Authentication
-- Authorization
-- DTOs
-- Middleware
-- Logging
-- Paginação
-- Versionamento de API
-- React
-- Axios
-- Consumo de APIs
-- Dashboards Analíticos
+* APIs REST
+* Entity Framework Core
+* PostgreSQL
+* JWT Authentication
+* Authorization
+* DTOs
+* Middleware
+* Logging
+* Paginação
+* Versionamento de API
+* React
+* Axios
+* Consumo de APIs
+* Dashboards Analíticos
+* Deploy em Produção
 
 ---
 
 # 🔮 Melhorias Futuras
 
-- Refresh Token
-- Upload de Imagens
-- Relatórios PDF
-- Exportação Excel
-- Docker
-- CI/CD
-- Testes Automatizados
+* Refresh Token
+* Upload de Imagens
+* Exportação para Excel
+* Relatórios PDF
+* Docker Compose
+* CI/CD
+* Testes Automatizados
+* Cache Distribuído
 
 ---
 
-# 👨‍💻 Autor
+# 👨‍💻 Desenvolvedor
 
 **Guilherme Cavalcante**
 
-Projeto desenvolvido para estudo e demonstração de competências Full Stack utilizando tecnologias amplamente utilizadas no mercado.
+Desenvolvedor Full Stack focado em desenvolvimento de aplicações web utilizando tecnologias modernas do ecossistema .NET e JavaScript.
+
+Este projeto foi desenvolvido para demonstrar conhecimentos práticos em:
+
+* ASP.NET Core
+* Entity Framework Core
+* PostgreSQL
+* React
+* JWT Authentication
+* Arquitetura de APIs REST
+* Deploy em Produção
+* Boas práticas de desenvolvimento
 
 ---
 
-## 📌 Status
+# 📌 Status do Projeto
 
-🟢 Projeto Concluído
+🟢 Projeto Concluído e Publicado
 
-- Backend Finalizado
-- Frontend Finalizado
-- Paginação Implementada
-- Logs Implementados
-- API Versionada
-- Pronto para Deploy
+* Frontend em Produção
+* Backend em Produção
+* Banco de Dados em Produção
+* API Versionada
+* Paginação Implementada
+* Logs Implementados
+* JWT Implementado
+* Controle de Permissões Implementado
+* Sistema Operacional em Ambiente Real
