@@ -18,6 +18,28 @@ https://bancaverde-api.onrender.com/swagger
 
 ---
 
+## 🔑 Acesso para Demonstração
+
+Para facilitar a avaliação do sistema, utilize as credenciais abaixo:
+
+### Administrador
+
+Email:
+[admin@teste.com](mailto:admin@teste.com)
+
+Senha:
+123456
+
+### Usuário Comum
+
+Email:
+[user@teste.com](mailto:user@teste.com)
+
+Senha:
+123456
+
+---
+
 # 🚀 Principais Funcionalidades
 
 ✅ Autenticação JWT
