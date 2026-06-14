@@ -17,9 +17,22 @@ public class UsersController : ControllerBase
 {
     private readonly AppDbContext _context;
 
+    private static readonly string[] ProtectedEmails =
+    {
+        "admin@teste.com",
+        "admin@demo.com",
+        "user@demo.com"
+    };
+
     public UsersController(AppDbContext context)
     {
         _context = context;
+    }
+
+    private static bool IsProtectedUser(User user)
+    {
+        return user.IsProtected ||
+               ProtectedEmails.Contains(user.Email.ToLower());
     }
 
     [HttpGet]
@@ -119,7 +132,7 @@ public class UsersController : ControllerBase
             ));
         }
 
-        if (user.IsProtected)
+        if (IsProtectedUser(user))
         {
             return BadRequest(new ApiResponse<object>(
                 false,
@@ -152,7 +165,7 @@ public class UsersController : ControllerBase
             ));
         }
 
-        if (user.IsProtected)
+        if (IsProtectedUser(user))
         {
             return BadRequest(new ApiResponse<object>(
                 false,
