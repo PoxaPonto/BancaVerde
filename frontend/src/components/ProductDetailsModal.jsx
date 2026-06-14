@@ -11,7 +11,7 @@ export default function ProductDetailsModal({
         product.stock <= 5
             ? "CRÍTICO"
             : product.stock <= 10
-                ? "ATENÇÃO"
+                ? "ATENCAO"
                 : "OK";
 
     const stockColor =
@@ -22,8 +22,8 @@ export default function ProductDetailsModal({
                 : "#bbf7d0";
 
     return (
-        <div style={overlayStyle}>
-            <div style={modalStyle}>
+        <div className="modal-overlay" style={overlayStyle}>
+            <div className="modal-panel" style={modalStyle}>
                 <h2>Detalhes do Produto</h2>
 
                 <div style={infoBoxStyle}>
@@ -61,7 +61,8 @@ export default function ProductDetailsModal({
 const overlayStyle = {
     position: "fixed",
     inset: 0,
-    background: "rgba(0, 0, 0, 0.65)",
+    background: "rgba(9, 6, 16, 0.72)",
+    backdropFilter: "blur(10px)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -70,18 +71,19 @@ const overlayStyle = {
 
 const modalStyle = {
     width: "420px",
-    background: "#111827",
+    background: "rgba(40, 29, 62, 0.98)",
     padding: "28px",
-    borderRadius: "14px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.5)"
+    borderRadius: "12px",
+    border: "1px solid rgba(160, 132, 215, 0.2)",
+    boxShadow: "0 24px 70px rgba(0,0,0,0.42)"
 };
 
 const infoBoxStyle = {
     marginTop: "18px",
-    background: "#1f2937",
+    background: "rgba(57, 42, 82, 0.66)",
     borderRadius: "10px",
     padding: "16px",
-    color: "#d1d5db",
+    color: "#d8d1e6",
     lineHeight: "1.8"
 };
 
@@ -94,7 +96,7 @@ const buttonContainerStyle = {
 const buttonStyle = {
     padding: "10px 16px",
     borderRadius: "8px",
-    background: "#22c55e",
-    color: "#fff",
+    background: "#00e676",
+    color: "#111827",
     fontWeight: "bold"
 };

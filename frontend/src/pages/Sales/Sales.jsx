@@ -89,14 +89,14 @@ export default function Sales() {
     }
 
     return (
-        <div>
+        <div className="page-surface">
             <h1>Vendas</h1>
 
             <p style={{ color: "#9ca3af", marginBottom: "24px" }}>
                 Registre saídas de estoque e acompanhe as movimentações.
             </p>
 
-            <form onSubmit={handleSale} style={formStyle}>
+            <form className="glass-panel" onSubmit={handleSale} style={formStyle}>
                 <label style={labelStyle}>Produto</label>
 
                 <div style={searchWrapperStyle}>
@@ -172,16 +172,16 @@ export default function Sales() {
 
 const formStyle = {
     maxWidth: "520px",
-    background: "#111827",
-    border: "1px solid #1f2937",
-    borderRadius: "14px",
+    background: "rgba(40, 29, 62, 0.94)",
+    border: "1px solid rgba(160, 132, 215, 0.18)",
+    borderRadius: "12px",
     padding: "24px",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
+    boxShadow: "0 18px 36px rgba(0,0,0,0.22), 0 0 34px rgba(125, 87, 210, 0.06)"
 };
 
 const labelStyle = {
     display: "block",
-    color: "#d1d5db",
+    color: "#d8d1e6",
     marginBottom: "8px",
     marginTop: "14px",
     fontWeight: "bold"
@@ -195,9 +195,9 @@ const inputStyle = {
     width: "100%",
     padding: "14px",
     borderRadius: "10px",
-    background: "#1f2937",
+    background: "rgba(61, 46, 88, 0.66)",
     color: "#fff",
-    border: "1px solid #374151"
+    border: "1px solid rgba(160, 132, 215, 0.18)"
 };
 
 const suggestionsStyle = {
@@ -205,8 +205,8 @@ const suggestionsStyle = {
     top: "52px",
     left: 0,
     right: 0,
-    background: "#111827",
-    border: "1px solid #374151",
+    background: "#2b2042",
+    border: "1px solid rgba(160, 132, 215, 0.24)",
     borderRadius: "10px",
     overflow: "hidden",
     zIndex: 20,
@@ -218,7 +218,7 @@ const suggestionItemStyle = {
     padding: "12px 14px",
     background: "transparent",
     color: "#fff",
-    borderBottom: "1px solid #1f2937",
+    borderBottom: "1px solid rgba(160, 132, 215, 0.12)",
     display: "flex",
     justifyContent: "space-between",
     cursor: "pointer",
@@ -227,10 +227,10 @@ const suggestionItemStyle = {
 
 const infoBoxStyle = {
     marginTop: "18px",
-    background: "#1f2937",
+    background: "rgba(57, 42, 82, 0.66)",
     borderRadius: "10px",
     padding: "14px",
-    color: "#d1d5db",
+    color: "#d8d1e6",
     lineHeight: "1.7"
 };
 
@@ -239,7 +239,8 @@ const buttonStyle = {
     width: "100%",
     padding: "14px",
     borderRadius: "10px",
-    background: "#22c55e",
-    color: "#fff",
+    background: "#00e676",
+    color: "#111827",
+    boxShadow: "0 12px 28px rgba(0, 230, 118, 0.18)",
     fontWeight: "bold"
 };

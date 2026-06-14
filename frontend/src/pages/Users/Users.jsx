@@ -91,7 +91,7 @@ export default function Users() {
     }
 
     return (
-        <div>
+        <div className="page-surface">
             <UserModal
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
@@ -140,9 +140,9 @@ export default function Users() {
                     Nenhum usuário encontrado.
                 </p>
             ) : (
-                <table style={tableStyle}>
+                <table className="glass-panel" style={tableStyle}>
                     <thead>
-                        <tr style={{ background: "#1f2937" }}>
+                        <tr style={{ background: "rgba(61, 46, 88, 0.66)" }}>
                             <th style={thStyle}>ID</th>
                             <th style={thStyle}>Nome</th>
                             <th style={thStyle}>E-mail</th>
@@ -180,7 +180,7 @@ export default function Users() {
                                         onClick={() => handleEdit(user)}
                                         style={{
                                             ...actionButtonStyle,
-                                            background: "#2563eb"
+                                            background: "#6d5bd0"
                                         }}
                                     >
                                         Editar
@@ -215,9 +215,10 @@ const headerStyle = {
 
 const newButtonStyle = {
     padding: "12px 18px",
-    borderRadius: "8px",
-    background: "#22c55e",
-    color: "#fff",
+    borderRadius: "10px",
+    background: "#00e676",
+    color: "#111827",
+    boxShadow: "0 12px 28px rgba(0, 230, 118, 0.18)",
     fontWeight: "bold"
 };
 
@@ -231,35 +232,36 @@ const filterInputStyle = {
     flex: 1,
     padding: "14px",
     borderRadius: "10px",
-    background: "#111827",
+    background: "rgba(40, 29, 62, 0.94)",
     color: "#fff",
-    border: "1px solid #374151"
+    border: "1px solid rgba(160, 132, 215, 0.18)"
 };
 
 const tableStyle = {
     width: "100%",
     borderCollapse: "collapse",
-    background: "#111827",
-    borderRadius: "10px",
-    overflow: "hidden"
+    background: "rgba(40, 29, 62, 0.94)",
+    borderRadius: "12px",
+    overflow: "hidden",
+    boxShadow: "0 18px 36px rgba(0,0,0,0.22), 0 0 34px rgba(125, 87, 210, 0.06)"
 };
 
 const thStyle = {
     padding: "14px",
     textAlign: "left",
-    color: "#d1d5db",
-    borderBottom: "1px solid #374151"
+    color: "#d8d1e6",
+    borderBottom: "1px solid rgba(160, 132, 215, 0.18)"
 };
 
 const tdStyle = {
     padding: "14px",
-    borderBottom: "1px solid #1f2937",
+    borderBottom: "1px solid rgba(160, 132, 215, 0.12)",
     color: "#f9fafb"
 };
 
 const actionButtonStyle = {
     padding: "8px 12px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     color: "#fff",
     fontWeight: "bold"
 };

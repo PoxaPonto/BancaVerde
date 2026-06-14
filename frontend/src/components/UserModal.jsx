@@ -87,8 +87,8 @@ export default function UserModal({
     }
 
     return (
-        <div style={overlayStyle}>
-            <div style={modalStyle}>
+        <div className="modal-overlay" style={overlayStyle}>
+            <div className="modal-panel" style={modalStyle}>
                 <h2>{isEditing ? "Editar Usuário" : "Novo Usuário"}</h2>
 
                 <form onSubmit={handleSubmit}>
@@ -136,7 +136,7 @@ export default function UserModal({
                             onClick={onClose}
                             style={{
                                 ...buttonStyle,
-                                background: "#374151"
+                                background: "rgba(160, 132, 215, 0.18)"
                             }}
                         >
                             Cancelar
@@ -146,7 +146,8 @@ export default function UserModal({
                             type="submit"
                             style={{
                                 ...buttonStyle,
-                                background: "#22c55e"
+                                background: "#00e676",
+                                color: "#111827"
                             }}
                         >
                             {isEditing ? "Atualizar" : "Salvar"}
@@ -161,7 +162,8 @@ export default function UserModal({
 const overlayStyle = {
     position: "fixed",
     inset: 0,
-    background: "rgba(0, 0, 0, 0.65)",
+    background: "rgba(9, 6, 16, 0.72)",
+    backdropFilter: "blur(10px)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -170,10 +172,11 @@ const overlayStyle = {
 
 const modalStyle = {
     width: "420px",
-    background: "#111827",
+    background: "rgba(40, 29, 62, 0.98)",
     padding: "28px",
-    borderRadius: "14px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.5)"
+    borderRadius: "12px",
+    border: "1px solid rgba(160, 132, 215, 0.2)",
+    boxShadow: "0 24px 70px rgba(0,0,0,0.42)"
 };
 
 const inputStyle = {
@@ -181,9 +184,9 @@ const inputStyle = {
     padding: "12px",
     marginTop: "14px",
     borderRadius: "8px",
-    background: "#1f2937",
+    background: "rgba(61, 46, 88, 0.66)",
     color: "#fff",
-    border: "1px solid #374151"
+    border: "1px solid rgba(160, 132, 215, 0.18)"
 };
 
 const buttonContainerStyle = {

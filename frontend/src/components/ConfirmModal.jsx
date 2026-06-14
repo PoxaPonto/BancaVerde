@@ -10,8 +10,8 @@ export default function ConfirmModal({
     }
 
     return (
-        <div style={overlayStyle}>
-            <div style={modalStyle}>
+        <div className="modal-overlay" style={overlayStyle}>
+            <div className="modal-panel" style={modalStyle}>
                 <h2>{title}</h2>
 
                 <p style={messageStyle}>
@@ -23,7 +23,7 @@ export default function ConfirmModal({
                         onClick={onCancel}
                         style={{
                             ...buttonStyle,
-                            background: "#374151"
+                            background: "rgba(160, 132, 215, 0.18)"
                         }}
                     >
                         Cancelar
@@ -47,7 +47,8 @@ export default function ConfirmModal({
 const overlayStyle = {
     position: "fixed",
     inset: 0,
-    background: "rgba(0, 0, 0, 0.65)",
+    background: "rgba(9, 6, 16, 0.72)",
+    backdropFilter: "blur(10px)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -56,10 +57,11 @@ const overlayStyle = {
 
 const modalStyle = {
     width: "420px",
-    background: "#111827",
+    background: "rgba(40, 29, 62, 0.98)",
     padding: "28px",
-    borderRadius: "14px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.5)"
+    borderRadius: "12px",
+    border: "1px solid rgba(160, 132, 215, 0.2)",
+    boxShadow: "0 24px 70px rgba(0,0,0,0.42)"
 };
 
 const messageStyle = {

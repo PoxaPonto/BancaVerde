@@ -42,7 +42,7 @@ export default function Movements() {
     }
 
     return (
-        <div>
+        <div className="page-surface">
             <h1>Movimentações de Estoque</h1>
 
             <p style={{ color: "#9ca3af", marginBottom: "20px" }}>
@@ -71,7 +71,7 @@ export default function Movements() {
                 </select>
             </div>
 
-            <div style={terminalStyle}>
+            <div className="glass-panel" style={terminalStyle}>
                 {filteredMovements.length === 0 ? (
                     <p style={{ color: "#9ca3af" }}>
                         Nenhuma movimentação encontrada.
@@ -87,7 +87,7 @@ export default function Movements() {
                         >
                             {index === 0 && (
                                 <span style={latestLabelStyle}>
-                                    ÚLTIMA MOVIMENTAÇÃO
+                                    ULTIMA MOVIMENTACAO
                                 </span>
                             )}
 
@@ -140,29 +140,30 @@ const filterInputStyle = {
     flex: 1,
     padding: "14px",
     borderRadius: "10px",
-    background: "#111827",
+    background: "rgba(40, 29, 62, 0.94)",
     color: "#fff",
-    border: "1px solid #374151"
+    border: "1px solid rgba(160, 132, 215, 0.18)"
 };
 
 const terminalStyle = {
-    background: "#000",
+    background: "linear-gradient(180deg, rgba(18, 13, 31, 0.96), rgba(13, 9, 23, 0.96))",
     padding: "20px",
     borderRadius: "12px",
     fontFamily: "monospace",
     minHeight: "500px",
-    border: "1px solid #1f2937"
+    border: "1px solid rgba(160, 132, 215, 0.18)",
+    boxShadow: "0 18px 36px rgba(0,0,0,0.22), 0 0 34px rgba(125, 87, 210, 0.06)"
 };
 
 const lineStyle = {
     marginBottom: "14px",
-    color: "#d1d5db",
+    color: "#d8d1e6",
     lineHeight: "1.6"
 };
 
 const latestLineStyle = {
-    background: "#111827",
-    borderLeft: "4px solid #22c55e",
+    background: "rgba(40, 29, 62, 0.88)",
+    borderLeft: "4px solid #00e676",
     padding: "14px",
     borderRadius: "8px",
     color: "#ffffff"
@@ -170,7 +171,7 @@ const latestLineStyle = {
 
 const latestLabelStyle = {
     display: "block",
-    color: "#22c55e",
+    color: "#00e676",
     fontSize: "12px",
     fontWeight: "bold",
     marginBottom: "6px",
@@ -178,7 +179,7 @@ const latestLabelStyle = {
 };
 
 const actionStyle = {
-    color: "#22c55e",
+    color: "#00e676",
     fontWeight: "bold",
     marginRight: "10px"
 };
