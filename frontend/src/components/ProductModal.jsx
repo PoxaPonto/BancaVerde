@@ -25,9 +25,9 @@ export default function ProductModal({
 
             if (productToEdit) {
                 setForm({
-                    name: productToEdit.name,
-                    price: productToEdit.price,
-                    stock: productToEdit.stock,
+                    name: productToEdit.name || "",
+                    price: String(productToEdit.price ?? "").replace(".", ","),
+                    stock: productToEdit.stock ?? "",
                     categoryId: productToEdit.categoryId || ""
                 });
             }
@@ -60,16 +60,55 @@ export default function ProductModal({
         });
     }
 
+    function handlePriceChange(e) {
+        const value = e.target.value;
+
+        if (/^[0-9]*[.,]?[0-9]*$/.test(value)) {
+            setForm({
+                ...form,
+                price: value
+            });
+        }
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
+        const normalizedPrice = parseFloat(
+            String(form.price)
+                .trim()
+                .replace(",", ".")
+        );
+
+        if (Number.isNaN(normalizedPrice) || normalizedPrice <= 0) {
+            toast.error("Informe um preço válido.");
+            return;
+        }
+
+        const normalizedStock = Number(form.stock);
+
+        if (Number.isNaN(normalizedStock) || normalizedStock < 0) {
+            toast.error("Informe um estoque válido.");
+            return;
+        }
+
+        if (!form.categoryId) {
+            toast.error("Selecione uma categoria.");
+            return;
+        }
+
         try {
             const productData = {
-                name: form.name,
-                price: Number(form.price),
-                stock: Number(form.stock),
+                name: form.name.trim(),
+                price: normalizedPrice,
+                stock: normalizedStock,
                 categoryId: Number(form.categoryId)
             };
+
+            if (!productData.name) {
+                toast.error("Informe o nome do produto.");
+                return;
+            }
 
             if (isEditing) {
                 await api.put(
@@ -121,10 +160,10 @@ export default function ProductModal({
                     <input
                         name="price"
                         type="text"
-                        input="decimal"
+                        inputMode="decimal"
                         placeholder="Preço"
                         value={form.price}
-                        onChange={handleChange}
+                        onChange={handlePriceChange}
                         style={inputStyle}
                     />
 
