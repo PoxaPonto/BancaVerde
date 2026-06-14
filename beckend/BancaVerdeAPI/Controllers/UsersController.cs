@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using BancaVerdeAPI.Data;
 using Asp.Versioning;
 using BancaVerdeAPI.DTOs;
@@ -33,6 +34,32 @@ public class UsersController : ControllerBase
     {
         return user.IsProtected ||
                ProtectedEmails.Contains(user.Email.ToLower());
+    }
+
+    private string GetCurrentUserName()
+    {
+        return
+            User.FindFirst(ClaimTypes.Name)?.Value ??
+            User.FindFirst("name")?.Value ??
+            User.FindFirst(ClaimTypes.Email)?.Value ??
+            "Desconhecido";
+    }
+
+    private void AddUserMovement(
+        string action,
+        string responsibleUser,
+        string affectedUser,
+        string details)
+    {
+        _context.StockMovements.Add(new StockMovement
+        {
+            Action = action,
+            UserName = responsibleUser,
+            ProductName = affectedUser,
+            OldStock = null,
+            NewStock = null,
+            CreatedAt = DateTime.UtcNow
+        });
     }
 
     [HttpGet]
@@ -109,6 +136,13 @@ public class UsersController : ControllerBase
 
         _context.Users.Add(user);
 
+        AddUserMovement(
+            "CREATE_USER",
+            GetCurrentUserName(),
+            $"{user.Name} ({user.Email})",
+            "Usuário criado"
+        );
+
         await _context.SaveChangesAsync();
 
         return Ok(new ApiResponse<object>(
@@ -140,9 +174,18 @@ public class UsersController : ControllerBase
             ));
         }
 
+        var oldUserData = $"{user.Name} ({user.Email}) - {user.Role}";
+
         user.Name = dto.Name;
         user.Email = dto.Email;
         user.Role = dto.Role;
+
+        AddUserMovement(
+            "UPDATE_USER",
+            GetCurrentUserName(),
+            $"{user.Name} ({user.Email})",
+            $"Antes: {oldUserData}"
+        );
 
         await _context.SaveChangesAsync();
 
@@ -172,6 +215,15 @@ public class UsersController : ControllerBase
                 "Este usuário é protegido e não pode ser excluído."
             ));
         }
+
+        var deletedUser = $"{user.Name} ({user.Email})";
+
+        AddUserMovement(
+            "DELETE_USER",
+            GetCurrentUserName(),
+            deletedUser,
+            "Usuário excluído"
+        );
 
         _context.Users.Remove(user);
 
