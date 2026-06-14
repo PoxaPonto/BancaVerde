@@ -90,7 +90,8 @@ public class UsersController : ControllerBase
             Name = dto.Name,
             Email = dto.Email,
             Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-            Role = dto.Role
+            Role = dto.Role,
+            IsProtected = false
         };
 
         _context.Users.Add(user);
@@ -118,6 +119,14 @@ public class UsersController : ControllerBase
             ));
         }
 
+        if (user.IsProtected)
+        {
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Este usuário é protegido e não pode ser editado."
+            ));
+        }
+
         user.Name = dto.Name;
         user.Email = dto.Email;
         user.Role = dto.Role;
@@ -140,6 +149,14 @@ public class UsersController : ControllerBase
             return NotFound(new ApiResponse<object>(
                 false,
                 "Usuário não encontrado."
+            ));
+        }
+
+        if (user.IsProtected)
+        {
+            return BadRequest(new ApiResponse<object>(
+                false,
+                "Este usuário é protegido e não pode ser excluído."
             ));
         }
 

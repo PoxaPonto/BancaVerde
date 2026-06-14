@@ -20,4 +20,6 @@ public class User
 
     [Required]
     public string Role { get; set; } = "User";
+
+    public bool IsProtected { get; set; } = false;
 }

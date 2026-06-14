@@ -129,8 +129,28 @@ using (var scope = app.Services.CreateScope())
     if (adminUser != null)
     {
         adminUser.Role = "Admin";
-        db.SaveChanges();
+        adminUser.IsProtected = true;
     }
+
+    var demoAdminUser = db.Users
+        .FirstOrDefault(u => u.Email == "admin@demo.com");
+
+    if (demoAdminUser != null)
+    {
+        demoAdminUser.Role = "Admin";
+        demoAdminUser.IsProtected = true;
+    }
+
+    var demoUser = db.Users
+        .FirstOrDefault(u => u.Email == "user@demo.com");
+
+    if (demoUser != null)
+    {
+        demoUser.Role = "User";
+        demoUser.IsProtected = true;
+    }
+
+    db.SaveChanges();
 }
 
 app.UseSerilogRequestLogging();
